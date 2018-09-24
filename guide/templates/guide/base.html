@@ -23,11 +23,16 @@
     <link rel="stylesheet" type="text/css" href="{% static 'guide/css/slick-theme.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'guide/css/style.css' %}" />
 
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" />
+
+
     {% block extra_head %}{% endblock %}
   </head>
   <body>
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm">
       <h5 class="my-0 mr-md-auto font-weight-normal"><a href="/" class="logo">КошерГид</a></h5>
+
       <nav class="my-2 my-md-0 mr-md-3">
         <a class="p-2 text-dark" href="/category/synagogue/">Синагоги</a>
         <a class="p-2 text-dark" href="/category/restaurants/">Рестораны</a>
@@ -35,6 +40,13 @@
         <a class="p-2 text-dark" href="/category/theaters/">Театры</a>
         <a class="p-2 text-dark" href="/category/schools/">Школы</a>
       </nav>
+
+      <div class="search-box">
+        <form method="get" action="/search/">
+          <input type="text" name="q" />
+		  <span></span>
+        </form>
+	  </div>
     </div>
 
     <div class="container">

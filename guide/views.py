@@ -144,3 +144,16 @@ def map(request):
     data['sectionCode'] = sectionCode
 
     return render(request, 'guide/map.html', data)
+
+
+def search(request):
+    data = {}
+    query = request.GET.get('q')
+
+    if query:
+        restaurants = Restaurant.objects.filter(title__iregex=r'('+query+')')
+        data['restaurants'] = restaurants
+
+    data['query'] = query
+
+    return render(request, 'guide/search.html', data)
