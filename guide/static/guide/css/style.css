@@ -1,0 +1,225 @@
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.container {
+  max-width: 960px;
+  overflow: hidden;
+}
+
+.pricing-header {
+  max-width: 700px;
+}
+
+.card-deck .card {
+  min-width: 220px;
+}
+
+.logo {
+    font-family: 'Poiret One', cursive;
+    font-size: 27px;
+    color: #000;
+    font-weight: 600;
+}
+.logo:hover {
+    color: #404040;
+    text-decoration: none;
+}
+
+.detail-org .detail-org__common {
+    margin-bottom: 20px;
+    display: block;
+    float: left;
+    width: 100%;
+}
+.detail-org .detail-org__img {
+    float: left!important;
+    margin-right: 10px;
+}
+
+.detail-org .props ul {
+    float: left;
+    width: 50%;
+}
+.detail-org .detail-org__contacts {
+    margin-top: 20px;
+    display: block;
+    float: left;
+    width: 100%;
+    clear: both;
+}
+
+.filter-elements__buttons {
+    margin-top: 20px;
+}
+
+.categories .card {
+    margin-bottom: 20px;
+}
+
+.categories .card:before {
+    left: 0;
+    content: '';
+    background: rgba(0, 0, 0, 0.68);
+    color: #000;
+    width: 100%;
+    height: 100%;
+    line-height: 2.5;
+    font-weight: 600;
+   position: absolute;
+}
+
+
+.categories .card {
+    width: 100%;
+}
+.categories .card .display-4 a {
+    color: #fff;
+}
+.categories .card .display-4 a {
+    text-decoration: none;
+}
+.categories .card .links {
+    margin-bottom: 20px;
+}
+.categories .card .links a {
+    color: #fff;
+    padding-right: 10px;
+}
+
+.container.slider-block {
+    margin-bottom: 30px;
+}
+
+.custom-select {
+    margin-bottom: 15px;
+}
+
+.look-in-map {
+    float: right;
+    font-size: 14px;
+    line-height: 50px;
+    color: #007bff;
+    font-weight: 400;
+}
+
+.title {
+   font-size: 33px;
+}
+
+.card-body h3 {
+    font-weight: 400;
+    font-size: 22px;
+}
+.card-body .card-text {
+    line-height: 18px;
+    font-size: 14px;
+    color: #424242;
+}
+
+.kitchens .badge {
+    padding: 5px 8px;
+}
+
+.about-org {
+    margin-bottom: 30px;
+}
+.about-org .about-org__title {
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 0px;
+}
+.about-org .about-org__list {
+    display: flex;
+    -ms-flex-flow: wrap;
+    flex-flow: wrap;
+    line-height: 0;
+    font-size: 0;
+    overflow: hidden;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 5px;
+}
+.about-org .about-org__list li {
+    width: 180px;
+    min-height: 50px;
+    display: inline-block;
+    line-height: 1.4;
+    text-align: left;
+    margin-top: 16px;
+}
+.about-org .about-org__list li .about-org__list-title {
+    font-size: 12px;
+    padding-bottom: 4px;
+    line-height: 1;
+    color: #858585;
+    display: block;
+}
+.about-org .about-org__list li .about-org__list-value {
+    font-size: 14px;
+    color: #000;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.contact-org {
+    margin-bottom: 30px;
+}
+.contact-org .contact-org__title {
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+.contact-org .contact-org__list {
+    display: flex;
+    -ms-flex-flow: wrap;
+    flex-flow: wrap;
+    line-height: 0;
+    font-size: 0;
+    overflow: hidden;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.contact-org .contact-org__list li {
+    width: 100%;
+    min-height: 50px;
+    display: inline-block;
+    line-height: 1.4;
+    text-align: left;
+}
+.contact-org .contact-org__list li .contact-org__list-title {
+    font-size: 12px;
+    padding-bottom: 4px;
+    line-height: 1;
+    color: #858585;
+    display: block;
+}
+.contact-org .contact-org__list li .contact-org__list-value {
+    font-size: 14px;
+    color: #000;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.map-org {
+    margin-bottom: 30px;
+}
+.map-org .map-org__title {
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+.map-org .map-org__map {
+    height: 225px;
+}
+
+.common-block p.display-4 {
+    font-size: 36px;
+}

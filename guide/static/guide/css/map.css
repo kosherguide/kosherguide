@@ -1,0 +1,245 @@
+body {
+  color: #404040;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 22px;
+  margin: 0;
+  font-weight: 400;
+  line-height: 20px;
+  padding: 20px 2px;
+}
+
+a {
+  color: #404040;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #101010;
+}
+
+.sidebar {
+  position: absolute;
+  width: 25%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  border-right: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.map {
+  position: absolute;
+  left: 25%;
+  width: 75%;
+  top: 0;
+  bottom: 0;
+}
+
+.heading {
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  height: 60px;
+  line-height: 60px;
+  padding: 0 10px;
+}
+
+.listings {
+  height: 100%;
+  overflow: auto;
+  padding-bottom: 60px;
+  margin-top: 10px;
+}
+
+.listings .item {
+    display: block;
+    border-bottom: 1px solid #eee;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 20px 10px 20px 25px !important;
+    clear: both;
+    float: left;
+    width: 100%;
+}
+.listings .item .img {
+    width: 100px;
+    float: left;
+}
+
+.listings .item:last-child { border-bottom: none; }
+
+.listings .item .title {
+  display: block;
+  color: #2d5be3;
+  font-weight: 700;
+  float: left;
+  margin-left: 14px;
+}
+
+.listings .item .title:hover {
+    text-decoration: underline;
+}
+
+.listings .item .more {
+    clear: both;
+    display: block;
+    margin-left: 14px;
+}
+
+.listings .item .title small { font-weight: 400; }
+
+.listings .item.active .title,
+.listings .item .title:hover { color: #2d5be3; }
+
+.listings .item.active {
+    background: #e6ebf6;
+    border-left: 5px solid #2d5be3;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+  border-left: 0;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-track {
+  background: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00853e;
+  border-radius: 0;
+}
+
+.clearfix { display: block; }
+
+.clearfix::after {
+  content: '.';
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+/* Marker tweaks */
+.mapboxgl-popup-close-button {
+  display: none;
+}
+
+.mapboxgl-popup-content {
+  padding: 0;
+  width: 180px;
+}
+
+.mapboxgl-popup-content-wrapper {
+  padding: 1%;
+}
+
+.mapboxgl-popup-content h3 {
+  background: #2d5be3;
+  color: #fff;
+  margin: 0;
+  display: block;
+  padding: 10px;
+  border-radius: 3px 3px 0 0;
+  font-weight: 300;
+  margin-top: -15px;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.mapboxgl-popup-content h4 {
+  margin: 0;
+  display: block;
+  padding: 10px;
+  font-weight: 400;
+  font-size: 13px;
+}
+
+.mapboxgl-popup-content div {
+  padding: 10px;
+}
+
+.mapboxgl-container .leaflet-marker-icon {
+  cursor: pointer;
+}
+
+.mapboxgl-popup-anchor-top > .mapboxgl-popup-content {
+  margin-top: 15px;
+}
+
+.mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
+  border-bottom-color: #91c949;
+}
+
+.listings .item .card__info {
+    float: left;
+}
+
+.listings .item .card__info-desc {
+    float: left;
+    margin-left: 14px;
+    font-size: 13px;
+    color: #959b9e;
+    clear: both;
+}
+
+.block-logo {
+    padding: 16px 0 0 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #dee2e6!important;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+    float: left;
+    width: 100%;
+}
+.logo {
+    font-family: 'Poiret One', cursive;
+    font-size: 27px;
+    color: #000;
+}
+.logo:hover {
+    color: #404040;
+    text-decoration: none;
+}
+.block-logo h5 {
+    margin: 0;
+}
+
+.heading {
+    clear: both;
+    background: #fafafa;
+}
+.heading ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    float: left;
+    width: 100%;
+}
+.heading ul li {
+    float: left;
+    padding: 0 12px;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+.heading ul li a {
+    color: #757575;
+}
+.heading ul li.current {
+    box-shadow: inset 0 -3px 0px #000;
+}
+.heading ul li.current a {
+    color: #404040;
+}
