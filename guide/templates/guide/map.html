@@ -1,0 +1,41 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Карта</title>
+
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.css' rel='stylesheet' />
+
+    <link rel="stylesheet" type="text/css" href="{% static 'guide/css/map.css' %}" />
+
+    <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&amp;subset=cyrillic" rel="stylesheet">
+  </head>
+  <body>
+    <div class='sidebar'>
+      <div class='block-logo'>
+        <h5 class="my-0 mr-md-auto font-weight-normal"><a href="/" class="logo">КошерГид</a></h5>
+        <small>на карте</small>
+      </div>
+      <div class='heading'>
+        <ul>
+          <li{%if sectionCode == 'restaurants' %} class="current"{%endif%}><a href="?section=restaurants">Рестораны</a></li>
+          <li{%if sectionCode == 'synagogues' %} class="current"{%endif%}><a href="?section=synagogues">Синагоги</a></li>
+          <li><a href="?section=theaters">Театры</a></li>
+        </ul>
+      </div>
+      <div id='listings' class='listings'></div>
+    </div>
+    <div id='map' class='map'></div>
+
+    <div style="display: none;" id="json_stores">{{stores}}</div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="{% static 'guide/js/map.js' %}"></script>
+  </body>
+</html>

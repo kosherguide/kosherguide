@@ -1,0 +1,11 @@
+{% extends 'guide/base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <div class="starter-template container">
+        <h1>{{post.title}}</h1>
+        <img src="{{ post.pic.url }}">
+        <p class="lead">{{post.text}}</p>
+    </div>
+{% endblock %}

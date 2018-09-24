@@ -1,0 +1,96 @@
+{% extends 'guide/base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <div class="container">
+    <!-- Список постов -->
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="display-4 pb-3 mb-4 border-bottom title">Рестораны
+                    <a href="/map/?section=restaurants" target="_blank" class="look-in-map">Посмотреть на карте</a>
+                </h1>
+            </div>
+
+            <div class="col-md-3">
+                <p>Фильтр</p>
+
+                <form method="get" action="" class="filter-elements">
+                    <select name="kitchens" class="custom-select custom-select-sm kitchens-select">
+                        <option value="">Выберите кухню</option>
+                        {% for kitchen in dbKitchens %}
+                            {% if queryKitchens and queryKitchens == kitchen.handle %}
+                                <option value="{{ kitchen.handle }}" selected>{{ kitchen.title }}</option>
+                            {% else %}
+                                <option value="{{ kitchen.handle }}">{{ kitchen.title }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+
+                    <select name="country" class="custom-select custom-select-sm countries-select">
+                        <option value="">Выберите страну</option>
+                        {% for country in dbCountries %}
+                            {% if queryCountries and queryCountries == country.handle %}
+                                <option value="{{ country.handle }}" selected>{{ country.title }}</option>
+                            {% else %}
+                                <option value="{{ country.handle }}">{{ country.title }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+
+    <!--                <select name="city" class="custom-select custom-select-sm">
+                        <option value="">Выберите город</option>
+                        {% for city in dbCities %}
+                            {% if queryCities and queryCities == city.handle %}
+                                <option value="{{ city.handle }}" selected>{{ city.title }}</option>
+                            {% else %}
+                                <option value="{{ city.handle }}">{{ city.title }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>-->
+
+                    <div class="filter-elements__buttons">
+                        <button type="submit" class="btn btn-primary btn-block">Найти</button>
+                        <a href="/category/restaurants/" class="btn btn-outline-secondary btn-block">Сбросить</a>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-9">
+                {% for restaurant in dbRestaurants %}
+                    <div class="col-md-12">
+                        <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+                            <a href="{% url 'guide:restaurant' restaurant.handle %}">
+                                <img class="card-img-right flex-auto d-none d-lg-block" src="{{ restaurant.pic.url }}" height="145px">
+                            </a>
+
+                            <div class="card-body d-flex flex-column align-items-start">
+                                <h3 class="mb-2">
+                                    <a class="text-dark" href="{% url 'guide:restaurant' restaurant.handle %}">
+                                        {{ restaurant.title }}
+                                    </a>
+                                </h3>
+                              <!--  {% if restaurant.working_hours != null %}
+                                    <div class="mb-1 text-muted">{{ restaurant.working_hours }}</div>
+                                {% endif %}-->
+                                {% if restaurant.preview_text != null %}
+                                    <p class="card-text mb-auto">{{ restaurant.preview_text|linebreaksbr }}</p>
+                                {% endif %}
+
+                                {% for i, kitchen in kitchens.items %}
+                                    {% if i == restaurant.id %}
+                                        <div class="kitchens">
+                                            {% for k in kitchen %}
+                                                <a href="?kitchens={{ k.handle }}" class="badge badge-primary">{{ k.title }}</a>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
