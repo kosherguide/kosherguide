@@ -85,13 +85,20 @@ class Synagogue(models.Model):
     pic = models.ImageField(verbose_name="Изображение", upload_to='images/', default='images/None/no-img.jpg')
     preview_text = models.CharField(verbose_name="Превью текст", max_length=200, blank=True, null=True)
     text = models.TextField(verbose_name="Детальный текст", blank=True, null=True)
-    country = models.ManyToManyField(Country, verbose_name="Страны")
     handle = models.SlugField(verbose_name="Символьный код", unique=True, max_length=200)
-    working_hours = models.CharField(verbose_name="График работы", max_length=200, blank=True, null=True)
-    is_restaurant = models.BooleanField(verbose_name="Есть ресторан")
-    site = models.CharField(verbose_name="Сайт", max_length=200, blank=True, null=True)
+    country = models.ForeignKey('guide.Country', on_delete=models.CASCADE, verbose_name="Страна")
+    city = models.ForeignKey('guide.City', on_delete=models.CASCADE, verbose_name="Город")
+    address = models.CharField(verbose_name="Адрес", max_length=200, blank=True, null=True)
+    subway = models.CharField(verbose_name="Метро", max_length=200, blank=True, null=True)
     created_date = models.DateTimeField(verbose_name="Дата создания", default=timezone.now)
     published_date = models.DateTimeField(verbose_name="Дата публикации", blank=True, null=True)
+    working_hours = models.CharField(verbose_name="График работы", max_length=200, blank=True, null=True)
+    lat = models.CharField(verbose_name="Широта", max_length=200, blank=True, null=True)
+    lng = models.CharField(verbose_name="Долгота", max_length=200, blank=True, null=True)
+    site = models.CharField(verbose_name="Официальный сайт", max_length=700, blank=True, null=True)
+    parking_space = models.BooleanField(verbose_name="Парковка", default=False)
+    wifi = models.BooleanField(verbose_name="Wi-Fi", default=False)
+    is_restaurant = models.BooleanField(verbose_name="Есть ресторан?", default=False)
 
     def publish(self):
         self.published_date = timezone.now()
@@ -101,13 +108,27 @@ class Synagogue(models.Model):
         return self.title
 
 
+class PhotoSynagogue(models.Model):
+    synagogue = models.ForeignKey('guide.Synagogue', on_delete=models.CASCADE)
+    image = models.ImageField(verbose_name="Изображение", upload_to='images/', default='images/None/no-img.jpg', blank=True, null=True)
+
+
+class PhoneSynagogue(models.Model):
+    synagogue = models.ForeignKey('guide.Synagogue', on_delete=models.CASCADE)
+    title = models.CharField(verbose_name="Номер телефона", max_length=200, blank=True, null=True)
+
+
+class EmailSynagogue(models.Model):
+    synagogue = models.ForeignKey('guide.Synagogue', on_delete=models.CASCADE)
+    title = models.CharField(verbose_name="Почта", max_length=200, blank=True, null=True)
+
+
 class Restaurant(models.Model):
     title = models.CharField(verbose_name="Заголовок", max_length=200)
     pic = models.ImageField(verbose_name="Изображение", upload_to='images/', default='images/None/no-img.jpg')
     preview_text = models.CharField(verbose_name="Превью текст", max_length=200, blank=True, null=True)
     text = models.TextField(verbose_name="Детальный текст", blank=True, null=True)
     handle = models.SlugField(verbose_name="Символьный код", unique=True, max_length=200)
-    site = models.CharField(verbose_name="Сайт", max_length=200, blank=True, null=True)
     country = models.ForeignKey('guide.Country', on_delete=models.CASCADE, verbose_name="Страна")
     city = models.ForeignKey('guide.City', on_delete=models.CASCADE, verbose_name="Город")
     address = models.CharField(verbose_name="Адрес", max_length=200, blank=True, null=True)

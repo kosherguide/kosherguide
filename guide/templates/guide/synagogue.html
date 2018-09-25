@@ -1,0 +1,137 @@
+{% extends 'guide/base.html' %}
+
+{% load static %}
+
+{% block extra_head %}
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.css' rel='stylesheet' />
+{% endblock %}
+
+{% block content %}
+    <div class="container breadcrumbs-block">
+        <p>
+            <a href="/category/synagogues/">Вернуться к синагогам</a>
+        </p>
+    </div>
+
+    <div class="container common-block">
+        <p class="display-4">{{synagogue.title}}</p>
+        {% if synagogue.country and synagogue.city %}
+            <p>
+                <mark>
+                    {% if synagogue.country %}
+                        {{synagogue.country}},
+                    {% endif %}
+                       {% if synagogue.city %}
+                        {{synagogue.city}}
+                    {% endif %}
+                </mark>
+            </p>
+        {% endif %}
+    </div>
+
+    <div class="container detail-text">
+        <p class="detail-org__text">{{synagogue.text}}</p>
+    </div>
+
+    <div class="container slider-block">
+         <div class="slider slick-slider">
+            {% for g in gallery %}
+             <div>
+                 <div class="bgCover" style="background-image: url('{{ g.image.url }}')" ></div>
+             </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="container about-org">
+        <p class="about-org__title">О Синагоге</p>
+        <ul class="about-org__list">
+            <li>
+                <span class="about-org__list-title">Парковка</span>
+                <span class="about-org__list-value">
+                    {% if synagogue.parking_space %}
+                        есть
+                    {% else %}
+                        нет
+                    {% endif %}
+                </span>
+            </li>
+            <li>
+                <span class="about-org__list-title">Wi-Fi</span>
+                <span class="about-org__list-value">
+                    {% if synagogue.wifi %}
+                        есть
+                    {% else %}
+                        нет
+                    {% endif %}
+                </span>
+            </li>
+            <li>
+                <span class="about-org__list-title">Есть ресторан</span>
+                <span class="about-org__list-value">
+                    {% if synagogue.is_restaurant %}
+                        есть
+                    {% else %}
+                        нет
+                    {% endif %}
+                </span>
+        </ul>
+    </div>
+
+    <div class="container contact-org">
+        <p class="contact-org__title">Контактная информация</p>
+        <ul class="contact-org__list">
+            {% if synagogue.address %}
+                <li>
+                    <span class="contact-org__list-title">Адрес</span>
+                    <span class="contact-org__list-value">{{ synagogue.address }}</span>
+                </li>
+            {% endif %}
+            {% if synagogue.subway %}
+                <li>
+                    <span class="contact-org__list-title">Метро</span>
+                    <span class="contact-org__list-value">{{ synagogue.subway }}</span>
+                </li>
+            {% endif %}
+            {% if synagogue.working_hours %}
+                <li>
+                    <span class="contact-org__list-title">Время работы</span>
+                    <span class="contact-org__list-value">{{ synagogue.working_hours }}</span>
+                </li>
+            {% endif %}
+            {% if phones|length > 0 %}
+              <li>
+                    <span class="contact-org__list-title">Телефон</span>
+                    <span class="contact-org__list-value">
+                        {% for phone in phones %}
+                            {{ phone.title }}{% if forloop.last == False %}, {% endif %}
+                        {% endfor %}
+                    </span>
+                </li>
+            {% endif %}
+            {% if emails|length > 0 %}
+                <li>
+                    <span class="contact-org__list-title">Почта</span>
+                    <span class="contact-org__list-value">
+                        {% for email in emails %}
+                            {{ email.title }}{% if forloop.last == False %}, {% endif %}
+                        {% endfor %}
+                    </span>
+                </li>
+            {% endif %}
+            {% if synagogue.site %}
+                <li>
+                    <span class="contact-org__list-title">Сайт</span>
+                    <a href="{{ synagogue.site }}" target="_blank" class="contact-org__list-value">{{ synagogue.site }}</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+
+    <div class="container map-org">
+        <p class="map-org__title">Синагога на карте</p>
+        <div id="json-coordinates" style="display:none;">{{jsonCoordinates}}</div>
+        <div id='map' class='map-org__map'></div>
+    </div>
+{% endblock %}
