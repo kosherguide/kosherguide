@@ -16,16 +16,18 @@
             <div class="card bg-dark text-white">
               <img class="card-img" src="{{ category.pic.url }}" alt="Card image">
               <div class="card-img-overlay">
-                <h2 class="display-4"><a href="{% url 'guide:restaurants' category.handle %}">{{ category.title }}</a></h2>
+                {% if category.handle == 'restaurants' %}
+                    <h2 class="display-4"><a href="{% url 'guide:restaurants' category.handle %}">{{ category.title }}</a></h2>
 
-                <div class="links">
-                    {% if category.handle == 'restaurants' %}
+                    <div class="links">
                         {% for kitchen in kitchens %}
                             <a href="{% url 'guide:restaurants' category.handle %}?kitchens={{kitchen.handle}}">{{ kitchen.title }}</a>
                         {% endfor %}
-                    {% endif %}
-                </div>
-
+                    </div>
+                {% endif %}
+                {% if category.handle == 'synagogues' %}
+                    <h2 class="display-4"><a href="{% url 'guide:synagogues' category.handle %}">{{ category.title }}</a></h2>
+                {% endif %}
                 <p class="lead">{{ category.preview_text }}</p>
               </div>
             </div>
