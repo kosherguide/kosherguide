@@ -82,7 +82,7 @@ class City(models.Model):
 
 class Synagogue(models.Model):
     title = models.CharField(verbose_name="Заголовок", max_length=200)
-    pic = models.ImageField(verbose_name="Изображение", upload_to='images/', default='images/None/no-img.jpg')
+    pic = models.ImageField(verbose_name="Изображение", upload_to='images/', default='images/None/no-img.jpg', blank=True, null=True)
     preview_text = models.CharField(verbose_name="Превью текст", max_length=200, blank=True, null=True)
     text = models.TextField(verbose_name="Детальный текст", blank=True, null=True)
     handle = models.SlugField(verbose_name="Символьный код", unique=True, max_length=200)
@@ -125,7 +125,7 @@ class EmailSynagogue(models.Model):
 
 class Restaurant(models.Model):
     title = models.CharField(verbose_name="Заголовок", max_length=200)
-    pic = models.ImageField(verbose_name="Изображение", upload_to='images/', default='images/None/no-img.jpg')
+    pic = models.ImageField(verbose_name="Изображение", upload_to='images/', default='images/None/no-img.jpg', blank=True, null=True)
     preview_text = models.CharField(verbose_name="Превью текст", max_length=200, blank=True, null=True)
     text = models.TextField(verbose_name="Детальный текст", blank=True, null=True)
     handle = models.SlugField(verbose_name="Символьный код", unique=True, max_length=200)

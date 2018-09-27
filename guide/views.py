@@ -71,7 +71,10 @@ def category_synagogues_detail(request, handle):
     phones = PhoneSynagogue.objects.filter(synagogue=synagogue.id)
     emails = EmailSynagogue.objects.filter(synagogue=synagogue.id)
 
-    jsonCoordinates = json.dumps({'lat': synagogue.lat, 'lng': synagogue.lng})
+    if synagogue.lat is None or synagogue.lng is None:
+        jsonCoordinates = ''
+    else:
+        jsonCoordinates = json.dumps({'lat': synagogue.lat, 'lng': synagogue.lng})
 
     data['synagogue'] = synagogue
     data['gallery'] = gallery
@@ -142,7 +145,10 @@ def category_restaurants_detail(request, handle):
     emails = Email.objects.filter(restaurant=restaurant.id)
     kitchens = restaurant.kitchens.all()
 
-    jsonCoordinates = json.dumps({'lat': restaurant.lat, 'lng': restaurant.lng})
+    if restaurant.lat is None or restaurant.lng is None:
+        jsonCoordinates = ''
+    else:
+        jsonCoordinates = json.dumps({'lat': restaurant.lat, 'lng': restaurant.lng})
 
     data['restaurant'] = restaurant
     data['gallery'] = gallery
@@ -150,6 +156,7 @@ def category_restaurants_detail(request, handle):
     data['phones'] = phones
     data['emails'] = emails
     data['jsonCoordinates'] = jsonCoordinates
+
     return render(request, 'guide/restaurant.html', data)
 
 

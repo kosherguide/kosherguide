@@ -30,19 +30,23 @@
         {% endif %}
     </div>
 
-    <div class="container detail-text">
-        <p class="detail-org__text">{{synagogue.text}}</p>
-    </div>
-
-    <div class="container slider-block">
-         <div class="slider slick-slider">
-            {% for g in gallery %}
-             <div>
-                 <div class="bgCover" style="background-image: url('{{ g.image.url }}')" ></div>
-             </div>
-            {% endfor %}
+    {% if synagogue.text != '' %}
+        <div class="container detail-text">
+            <p class="detail-org__text">{{synagogue.text}}</p>
         </div>
-    </div>
+    {% endif %}
+
+    {% if gallery|length > 0 %}
+        <div class="container slider-block">
+             <div class="slider slick-slider">
+                {% for g in gallery %}
+                 <div>
+                     <div class="bgCover" style="background-image: url('{{ g.image.url }}')" ></div>
+                 </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
 
     <div class="container about-org">
         <p class="about-org__title">О Синагоге</p>
@@ -86,6 +90,10 @@
                 <li>
                     <span class="contact-org__list-title">Адрес</span>
                     <span class="contact-org__list-value">{{ synagogue.address }}</span>
+                    <div class="yandex-taxi">
+                        <script src="//yastatic.net/taxi-widget/ya-taxi-widget.js"></script>
+                        <div class="ya-taxi-widget" data-use-location="true" data-size="xs" data-theme="normal" data-title="Вызвать такси" data-point-a="" data-point-b="{{synagogue.lng}},{{synagogue.lat}}" data-proxy-url="https://3.redirect.appmetrica.yandex.com/route?start-lat={start-lat}&amp;start-lon={start-lon}&amp;end-lat={end-lat}&amp;end-lon={end-lon}&amp;ref=https://kosherguide.pythonanywhere.com/&amp;appmetrica_tracking_id=1178268795219780156"></div>
+                    </div>
                 </li>
             {% endif %}
             {% if synagogue.subway %}
@@ -129,9 +137,11 @@
         </ul>
     </div>
 
-    <div class="container map-org">
-        <p class="map-org__title">Синагога на карте</p>
-        <div id="json-coordinates" style="display:none;">{{jsonCoordinates}}</div>
-        <div id='map' class='map-org__map'></div>
-    </div>
+    {% if jsonCoordinates != '' %}
+        <div class="container map-org">
+            <p class="map-org__title">Синагога на карте</p>
+            <div id="json-coordinates" style="display:none;">{{jsonCoordinates}}</div>
+            <div id='map' class='map-org__map'></div>
+        </div>
+    {% endif %}
 {% endblock %}
