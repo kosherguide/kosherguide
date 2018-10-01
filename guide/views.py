@@ -194,7 +194,8 @@ def map(request):
                     "country": restaurant.country.title,
                     "crossStreet": restaurant.address,
                     "postalCode": "123104",
-                    "state": restaurant.city.title
+                    "state": restaurant.city.title,
+                    "sectionCode": sectionCode,
                 }
             })
 
@@ -221,7 +222,8 @@ def map(request):
                     "country": synagogue.country.title,
                     "crossStreet": synagogue.address,
                     "postalCode": "123104",
-                    "state": synagogue.city.title
+                    "state": synagogue.city.title,
+                    "sectionCode": sectionCode,
                 }
             })
 

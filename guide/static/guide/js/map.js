@@ -127,7 +127,7 @@ $(document).ready(function() {
         // Create a new link with the class 'title' for each store
         // and fill it with the store address
         var link = mainDetail.appendChild(document.createElement('a'));
-        link.href = '/category/restaurants/' + prop.handle + '/';
+        link.href = '/category/' + prop.sectionCode + '/' + prop.handle + '/';
         link.target = '_blank';
         link.className = 'title';
 //        link.dataPosition = i;
