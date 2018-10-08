@@ -5,9 +5,10 @@ from django.views import generic
 from django.utils import timezone
 from django.http import HttpResponse
 from django.views.generic import TemplateView
-import json as simplejson
-
 from .models import Slider, Post, Category, Synagogue, Restaurant, Kitchen, Photo, Phone, Email, Country, City, PhotoSynagogue, PhoneSynagogue, EmailSynagogue
+
+from django.core import serializers
+import json as simplejson
 
 
 class IndexView(TemplateView):
@@ -249,3 +250,29 @@ def search(request):
     data['query'] = query
 
     return render(request, 'guide/search.html', data)
+
+
+def api_all_restaurants(request):
+    offset = request.GET.get('offset')
+    limit = request.GET.get('limit')
+
+    if offset is None or offset == '':
+        offset = 0
+    else:
+        offset = int(offset)
+
+    if limit is None or limit == '':
+        limit = 25
+    else:
+        limit = int(limit)
+
+    limit = offset + limit
+
+    dbRestaurants = Restaurant.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')[offset:limit]
+    for restaurant in dbRestaurants:
+        # restaurant.kitchens_list = restaurant.kitchens.all()
+        print(restaurant)
+
+    data = serializers.serialize('json', dbRestaurants)
+
+    return HttpResponse(data, content_type="application/json")

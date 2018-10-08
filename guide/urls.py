@@ -2,6 +2,8 @@ from django.urls import path
 
 from . import views
 
+
+
 app_name = 'guide'
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
@@ -12,4 +14,5 @@ urlpatterns = [
     path('category/restaurants/<str:handle>/', views.category_restaurants_detail, name='restaurant'),
     path('map/', views.map, name='map'),
     path('search/', views.search, name='search'),
+    path('api/restaurants', views.api_all_restaurants, name='api_all_restaurants'),
 ]
