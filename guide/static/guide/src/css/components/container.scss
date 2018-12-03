@@ -1,0 +1,121 @@
+body, html {
+  height: 100%;
+  min-height: 100%;
+  //overflow-x: hidden;
+}
+
+body {
+  position: relative;
+  @include openSans;
+  font-weight: normal;
+  min-width: 320px;
+  margin: 0;
+  padding: 0;
+  overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch;
+  background-color: #f5f5f5;
+  @include transition(transform 500ms cubic-bezier(1, 0, 0.645, 0.65));
+}
+
+$mediaOne    : 1024px;
+$screenOne   : 1200px;
+
+$mediaTwo    : 1000px;
+$screenTwo   : 670px;
+
+$mediaThree  : 767px;
+$screenThree : 670px;
+
+$mediaFour  : 480px;
+$screenFour : 100%;
+
+
+.contFluid {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  overflow: hidden;
+  .container {
+    max-width: $screenOne;
+  }
+  .cf_hide,
+  .is-hidden {
+    display: none;
+  }
+}
+//contFluid
+
+.col {
+  .container {
+    position: relative;
+    max-width: 100%;
+    width: 100%;
+    display: block;
+    margin:  0 auto;
+    padding: 0;
+  }
+}
+//col
+
+.row {
+  margin: 0;
+  .container {
+    position: relative;
+    width: 100%;
+    display: block;
+    margin:  0 auto;
+    &:not(.property) {
+      padding: 30px 10px;
+    }
+  }
+}
+//row
+
+@media all and (max-width: $mediaOne) {
+  .contFluid {
+    .row {
+      .container {
+        max-width: $screenOne;
+      }
+    }
+    //row
+  }
+  //contFluid
+}
+
+@media all and (max-width: $mediaTwo) {
+  .contFluid {
+    .row {
+      .container {
+        max-width: $screenTwo;
+      }
+    }
+    //row
+  }
+  //contFluid
+}
+
+@media all and (max-width: $mediaThree) {
+  .contFluid {
+    .row {
+      .container {
+        max-width: $screenThree;
+      }
+    }
+    //row
+  }
+  //contFluid
+}
+
+@media all and (max-width: $mediaFour) {
+  .contFluid {
+    .row {
+      .container {
+        max-width: $screenFour;
+      }
+    }
+    //row
+  }
+  //contFluid
+}

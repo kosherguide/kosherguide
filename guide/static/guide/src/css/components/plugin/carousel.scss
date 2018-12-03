@@ -1,0 +1,57 @@
+.carousel-daddy {
+  @include alignCenter;
+  display: flex;
+  align-items: center;
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .imageWrap {
+    img {
+      width: 100%;
+      position: relative;
+      display: none;
+      top: 0;
+      left: 0;
+      &:first-child {
+        display: block;
+      }
+    }
+  }
+  //imageWrap
+}
+//carousel-daddy
+
+.cellWrap {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: table;
+  span {
+    display: table-cell;
+    @include transition(all .2s ease);
+    border-bottom: 3px solid transparent;
+    &.active {
+      border-color: #f05a24;
+    }
+    &:first-child:last-child {
+      border-color: transparent;
+    }
+  }
+}
+//cellWrap
+
+.cardCarousel {
+  & > .image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+  }
+}

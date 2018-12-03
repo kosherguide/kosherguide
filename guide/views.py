@@ -18,7 +18,7 @@ class IndexView(TemplateView):
         data = super().get_context_data(**kwargs)
         data['sliders'] = Slider.objects.filter(published_date__lte=timezone.now()).order_by('sort', '-published_date')[
                           :5]
-        data['posts'] = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')[:3]
+        data['posts'] = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')[:5]
         data['categories'] = Category.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')[
                              :20]
         data['kitchens'] = Kitchen.objects.all()
@@ -77,11 +77,15 @@ def category_synagogues_detail(request, handle):
     else:
         jsonCoordinates = json.dumps({'lat': synagogue.lat, 'lng': synagogue.lng})
 
+    # Получаем список рекомендуемых
+    dbSynagoguesSame = Synagogue.objects.exclude(handle=handle).filter(published_date__lte=timezone.now()).order_by('-published_date')[:5]
+
     data['synagogue'] = synagogue
     data['gallery'] = gallery
     data['phones'] = phones
     data['emails'] = emails
     data['jsonCoordinates'] = jsonCoordinates
+    data['dbSynagoguesSame'] = dbSynagoguesSame
 
     return render(request, 'guide/synagogue.html', data)
 
@@ -151,12 +155,16 @@ def category_restaurants_detail(request, handle):
     else:
         jsonCoordinates = json.dumps({'lat': restaurant.lat, 'lng': restaurant.lng})
 
+    # Получаем список рекомендуемых
+    dbRestaurantsSame = Restaurant.objects.exclude(handle=handle).filter(published_date__lte=timezone.now()).order_by('-published_date')[:5]
+
     data['restaurant'] = restaurant
     data['gallery'] = gallery
     data['kitchens'] = kitchens
     data['phones'] = phones
     data['emails'] = emails
     data['jsonCoordinates'] = jsonCoordinates
+    data['dbRestaurantsSame'] = dbRestaurantsSame
 
     return render(request, 'guide/restaurant.html', data)
 

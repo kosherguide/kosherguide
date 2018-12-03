@@ -1,60 +1,76 @@
-{% extends 'guide/base.html' %}
+{% extends 'guide/layout.html' %}
 
 {% load static %}
 
+{% block head %}
+    <title>КошерГид - Синагоги</title>
+{% endblock %}
+
 {% block content %}
-    <div class="container">
-        <!-- Список синагог -->
-        <div class="row">
-            <div class="col-md-12">
-                <h1 class="display-4 pb-3 mb-4 border-bottom title">Синагоги
-                    <a href="/map/?section=synagogues" target="_blank" class="look-in-map">Посмотреть на карте</a>
-                </h1>
-            </div>
+    <div class="row cf_filterPage">
+        <div class="container">
+            <div class="fp_container">
+                <div class="navbar">
+                    <div class="lineTitle">Фильтр</div>
+                    <div class="wrapper">
+                        <a href="/map/?section=restaurants" target="_blank" class="mapInner">
+                            <img class="image" src="{% static 'guide/images/img_map.png' %}">
+                            <button class="btn btnGreen not-shadow">Посмотреть на карте</button>
+                        </a>
 
-            <div class="col-md-3">
-                <p>Фильтр</p>
-
-                <form method="get" action="" class="filter-elements">
-                    <select name="country" class="custom-select custom-select-sm countries-select">
-                        <option value="">Выберите страну</option>
-                        {% for country in dbCountries %}
-                            {% if queryCountries and queryCountries == country.handle %}
-                                <option value="{{ country.handle }}" selected>{{ country.title }}</option>
-                            {% else %}
-                                <option value="{{ country.handle }}">{{ country.title }}</option>
-                            {% endif %}
-                        {% endfor %}
-                    </select>
-
-                    <div class="filter-elements__buttons">
-                        <button type="submit" class="btn btn-primary btn-block">Найти</button>
-                        <a href="/category/synagogues/" class="btn btn-outline-secondary btn-block">Сбросить</a>
-                    </div>
-                </form>
-            </div>
-
-            <div class="col-md-9">
-                {% for synagogue in dbSynagogues %}
-                    <div class="col-md-12">
-                        <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-                            <a href="{% url 'guide:synagogue' synagogue.handle %}">
-                                <img class="card-img-right flex-auto d-none d-lg-block" src="{{ synagogue.pic.url }}" height="145px">
-                            </a>
-
-                            <div class="card-body d-flex flex-column align-items-start">
-                                <h3 class="mb-2">
-                                    <a class="text-dark" href="{% url 'guide:synagogue' synagogue.handle %}">
-                                        {{ synagogue.title }}
-                                    </a>
-                                </h3>
-                                {% if synagogue.preview_text != null %}
-                                    <p class="card-text mb-auto">{{ synagogue.preview_text|linebreaksbr }}</p>
-                                {% endif %}
+                        <form method="get" action="" class="formFilter">
+                            <div class="formGroup">
+                                <select name="country" class="custom-select custom-select-sm countries-select">
+                                    <option value="">Выберите страну</option>
+                                    {% for country in dbCountries %}
+                                        {% if queryCountries and queryCountries == country.handle %}
+                                            <option value="{{ country.handle }}" selected>{{ country.title }}</option>
+                                        {% else %}
+                                            <option value="{{ country.handle }}">{{ country.title }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
                             </div>
+                            <div class="buttons">
+                                <a href="/category/synagogues/" class="btn btn-outline-secondary btn-block">Сбросить</a>
+                                <button type="submit" class="btn btnGreen">Найти</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <div class="lineTitle"> Синагоги
+                        <div class="gridPanel" data-grid="1">
+                            <span data-id="0" class="material-icons icon-th-list is-active ">view_module</span>
+                            <span data-id="1" class="material-icons icon-th">view_stream</span>
                         </div>
                     </div>
-                {% endfor %}
+
+                    <section class="items news-th x3" data-grid="1">
+                        {% for synagogue in dbSynagogues %}
+                            <article class="item">
+                                <div class="wrapper">
+                                    <a href="{% url 'guide:synagogue' synagogue.handle %}" class="it_pic">
+                                        <div class="imageCover ratio-3-4">
+                                            <div class="placeholder" style="background-image: url('{{ synagogue.pic.url }}')"></div>
+                                            <img src="{{ synagogue.pic.url }}" alt="" class="image">
+                                        </div>
+                                    </a>
+
+                                    <div class="it_content">
+                                        <h2 class="title">
+                                            <a href="{% url 'guide:synagogue' synagogue.handle %}">{{ synagogue.title }}</a>
+                                        </h2>
+                                        {% if synagogue.preview_text != null %}
+                                            <div class="description">{{ synagogue.preview_text|linebreaksbr }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </article>
+                        {% endfor %}
+                    </section>
+                </div>
             </div>
         </div>
     </div>

@@ -1,0 +1,27 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'guide/favicon.ico' %}">
+    {% block head %}{% endblock %}
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,400,400i,500,500i,700,700i&subset=cyrillic-ext" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'guide/css/app.css' %}" />
+</head>
+<body>
+    <div class="contFluid">
+        {% include 'guide/state/header.html' %}
+        {% block content %}{% endblock %}
+        {% include 'guide/state/footer.html' %}
+
+        <script src="{% static 'guide/js/jquery.js' %}"></script>
+        <script src="{% static 'guide/js/app.js' %}"></script>
+        {% block script %}{% endblock %}
+    </div>
+</body>
+</html>

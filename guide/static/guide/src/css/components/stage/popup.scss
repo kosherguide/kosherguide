@@ -1,0 +1,222 @@
+.popup_wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 0;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  z-index: 999;
+  display: none;
+  &:before {
+    content: '';
+    width: 0;
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  & > div {
+    display: none;
+    z-index: 101;
+    vertical-align: middle;
+  }
+  //all children popup_wrap
+
+  .popupInfoBlock {
+    position: relative;
+    width: 100%;
+    max-width: 1024px;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #444;
+    text-align: left;
+    box-shadow: 3px 4px 35px rgba(9, 11, 11, .1);
+    margin: 0 auto;
+    padding: 20px;
+    overflow: hidden;
+    .title {
+      position: relative;
+      font-size: 19px;
+      font-weight: lighter;
+      color: #666;
+      margin: 0 0 15px;
+      .close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        color: #a9a9a9;
+        @include transition(all .3s ease);
+        @include user-select();
+        cursor: pointer;
+        &:hover {
+          color: #909090;
+        }
+      }
+    }
+
+    .content {
+      position: relative;
+      width: 100%;
+      display: table;
+      .block {
+        position: relative;
+        width: 50%;
+        display: table-cell;
+        vertical-align: middle;
+        #mapPopup {
+          position: relative;
+          border-radius: 10px;
+          overflow: hidden;
+          &:after {
+            content: '';
+            width: 100%;
+            background-color: #ebebeb;
+            float: left;
+            padding-top: 100%;
+            display: block;
+          }
+        }
+      }
+      //block
+
+      .infoContent {
+        position: relative;
+        padding: 5px 25px;
+        vertical-align: top;
+        .title {
+          font-size: 20px;
+          font-weight: 500;
+          color: #000;
+          display: block;
+          margin: 0 0 10px;
+        }
+        //title
+
+        .text {
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 22px;
+          color: #999;
+          display: block;
+        }
+        //text
+
+        .bottom {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          padding: 10px 25px 0;
+          .cell {
+            font-size: 14px;
+            color: #555555;
+            padding: 4px 0;
+            display: block;
+            .icon {
+              font-size: 21px;
+              color: #f05a24;
+              display: inline-block;
+              vertical-align: middle;
+            }
+            //icon
+          }
+          //cell
+        }
+        //bottom
+      }
+      //infoContent
+    }
+    //content
+  }
+  //popupInfoBlock
+
+  .popupConfirm {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #444;
+    text-align: left;
+    border-top: solid 3px #f05a24;
+    box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);
+    margin: 0 auto;
+    padding: 30px;
+    overflow: hidden;
+
+    .close {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 14px;
+      display: inline-block;
+      cursor: pointer;
+      @include transition(all .3s ease);
+      &:hover {
+        color: #f05a24;
+      }
+    }
+
+    .title {
+      font-size: 18px;
+      letter-spacing: 0.3px;
+      color: #444;
+      text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);
+      margin: 0 0 10px;
+      padding: 0;
+    }
+
+    .text {
+      font-size: 15px;
+      line-height: 21px;
+      color: #777;
+      margin: 0 0 30px;
+      padding: 0;
+    }
+
+    .confirmButtons {
+      padding: 15px 0 0;
+      text-align: center;
+    }
+    //confirmButtons
+
+    .button {
+      position: relative;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 4px;
+      border: none;
+      background-color: #ebebeb;
+      color: #333;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-block;
+      margin: 0 15px;
+      padding: 12px 30px;
+      @include transition(all .3s ease);
+      cursor: pointer;
+
+      &:hover {
+        background-color: #f7f7f7;
+      }
+
+      &.btnDeleteItem {
+        color: #ffffff;
+        background-color: #ec5840;
+        &:hover {
+          background-color: #da543e;
+        }
+      }
+      //btnDeleteItem
+
+    }
+    //button
+  }
+  //popupConfirm
+}
+//popup_wrap

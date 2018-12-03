@@ -1,200 +1,217 @@
-{% extends 'guide/base.html' %}
+{% extends 'guide/layout.html' %}
 
 {% load static %}
 
-{% block extra_head %}
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.css' rel='stylesheet' />
+{% block head %}
+    <title>КошерГид - Рестораны</title>
 {% endblock %}
 
 {% block content %}
-    <div class="container breadcrumbs-block">
-        <p>
-            <a href="/category/restaurants/">Вернуться к ресторанам</a>
-        </p>
-    </div>
+    <div class="row cf_detail">
+        <div class="container">
+            <div class="dt_content">
+                <a href="/category/restaurants/" class="btnBack">Вернуться к ресторанам</a>
+               <div class="dt_viewBlock Block wh_bl">
+                   <div class="category">Кошерный ресторан</div>
+                   <h2 class="title"> {{restaurant.title}}
+                       {% if restaurant.rating %}
+                           <div class="ratingScore" data-score="{{restaurant.rating}}">
+                               <div class="count">{{restaurant.rating}}</div>
+                               <div class="score">
+                                   <span></span>
+                                   <span></span>
+                                   <span></span>
+                                   <span></span>
+                                   <span></span>
+                               </div>
+    {#                            <a href="" class="btnReviews">#}
+    {#                                Отзывов:#}
+    {#                                <span>37</span>#}
+    {#                            </a>#}
+                           </div>
+                       {% endif %}
+                   </h2>
 
-    <div class="container common-block">
-        <p class="display-4">{{restaurant.title}}</p>
-        {% if restaurant.country and restaurant.city %}
-            <p>
-                <mark>
-                    {% if restaurant.country %}
-                        {{restaurant.country}},
+                   {% if gallery|length > 0 %}
+                       <div class="detailCarousel imageGallery">
+                           {% for g in gallery %}
+                               <a href="{{ g.image.url }}" class="item">
+                                   <img src="{{ g.image.url }}" alt="" class="image">
+                               </a>
+                           {% endfor %}
+                        </div>
+                   {% endif %}
+
+{#                   <div class="contacts">#}
+{#                       {% if phones|length > 0 %}#}
+{#                           <div class="cell number">#}
+{#                               <span class="icon icon-phone"></span>#}
+{#                               <span class="info">#}
+{#                                   {% for phone in phones %}{{ phone.title }}{% if forloop.last == False %}, {% endif %}{% endfor %}#}
+{#                               </span>#}
+{#                           </div>#}
+{#                       {% endif %}#}
+{#                       {% if restaurant.address %}#}
+{#                           <div class="cell location">#}
+{#                               <span class="icon icon-location"></span>#}
+{#                               <span class="info">{{ restaurant.address }}</span>#}
+{#                           </div>#}
+{#                       {% endif %}#}
+{#                       {% if restaurant.site %}#}
+{#                           <div class="cell site">#}
+{#                               <span class="icon icon-site"></span>#}
+{#                               <a href="{{ restaurant.site }}" target="_blank" class="info">{{ restaurant.site }}</a>#}
+{#                           </div>#}
+{#                       {% endif %}#}
+{#                   </div>#}
+
+                    {% if restaurant.text != '' %}
+                        <div class="titleBlock">Описание
+{#                            <div class="workingHours">Открыто до 00:00</div>#}
+                        </div>
+                        <div class="description">
+                            <p>{{restaurant.text}}</p>
+                        </div>
                     {% endif %}
-                       {% if restaurant.city %}
-                        {{restaurant.city}}
-                    {% endif %}
-                </mark>
-            </p>
-        {% endif %}
-    </div>
 
-    {% if restaurant.text != '' %}
-        <div class="container detail-text">
-            <p class="detail-org__text">{{restaurant.text}}</p>
-        </div>
-    {% endif %}
+                    <div class="kitchens">
+                        {% for kitchen in kitchens %}
+                            <a href="/category/restaurants/?kitchens={{ kitchen.handle }}" class="category">{{ kitchen.title }}</a>
+                        {% endfor %}
+                    </div>
 
-    {% if gallery|length > 0 %}
-        <div class="container slider-block">
-             <div class="slider slick-slider">
-                {% for g in gallery %}
-                 <div>
-                     <div class="bgCover" style="background-image: url('{{ g.image.url }}')" ></div>
-                 </div>
-                {% endfor %}
+{#                   <div class="buttons">#}
+{#                       <a href="" class="btnGreen btn_sendReview">Написать отзыв</a>#}
+{#                    </div>#}
+               </div>
+
+                <div class="dt_infoBlock">
+                    <div class="titleBlock">О ресторане</div>
+                    <ul class="listInfo wh_bl">
+                        {% if restaurant.address %}
+                            <li>
+                                <div class="name">Адрес</div>
+                                <div class="info">{{ restaurant.address }}</div>
+                            </li>
+                        {% endif %}
+                        {% if phones|length > 0 %}
+                            <li>
+                                <div class="name">Телефон</div>
+                                <div class="info">{% for phone in phones %}{{ phone.title }}{% if forloop.last == False %}, {% endif %}{% endfor %}</div>
+                            </li>
+                        {% endif %}
+                        {% if restaurant.working_hours %}
+                            <li>
+                                <div class="name">Часы работы</div>
+                                <div class="info">{{ restaurant.working_hours }}</div>
+                            </li>
+                        {% endif %}
+                        <li>
+                            <div class="name">Средний чек</div>
+                            <div class="info">
+                                {% if restaurant.average_account_min and restaurant.average_account_max %}
+                                    {{restaurant.average_account_min}} — {{restaurant.average_account_max}} рублей
+                                {% endif %}
+
+                                {% if restaurant.average_account_min and restaurant.average_account_max %}
+                                    {{restaurant.average_account_min}} рублей
+                                {% endif %}
+
+                                {% if restaurant.average_account_min and restaurant.average_account_max %}
+                                    {{restaurant.average_account_max}} рублей
+                                {% endif %}
+                            </div>
+                        </li>
+                        <li>
+                            <div class="name">Банковские карты</div>
+                            <div class="info">
+                                {% if restaurant.bank_cards %} принимаются {% else %} не принимаются {% endif %}
+                            </div>
+                        </li>
+                        <li>
+                            <div class="name">Парковка</div>
+                            <div class="info">
+                                {% if restaurant.parking_space %} есть {% else %} нет {% endif %}
+                            </div>
+                        </li>
+                        <li>
+                            <div class="name">Wi-Fi</div>
+                            <div class="info">
+                                {% if restaurant.wifi %} есть {% else %} нет {% endif %}
+                            </div>
+                        </li>
+                        <li>
+                            <div class="name">Банкеты</div>
+                            <div class="info">
+                                {% if restaurant.banquets %} есть {% else %} нет {% endif %}
+                            </div>
+                        </li>
+                        <li>
+                            <div class="name">Доставка</div>
+                            <div class="info">
+                                 {% if restaurant.delivery %} есть {% else %} нет {% endif %}
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                {% if jsonCoordinates != '' %}
+                    <div class="dt_mapBlock">
+                        <div class="titleBlock">Ресторан на карте</div>
+                        <div class="wrapper wh_bl">
+                            <div id="json-coordinates" style="display:none;">{{jsonCoordinates}}</div>
+                            <div id='map' class='map-org__map'></div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="dt_rightSide">
+                <div class="widget_location">
+                    <div class="titleBlock">Вызвать такси</div>
+                    <div class="wl_map wh_bl">
+                        <script src="//yastatic.net/taxi-widget/ya-taxi-widget.js"></script>
+                        <div class="ya-taxi-widget"
+                            data-use-location="true"
+                            data-size="m"
+                            data-title=""
+                            data-point-a=""
+                            data-point-b="{{ restaurant.lng }},{{ restaurant.lat }}"
+                            data-ref="https://kosherguide.pythonanywhere.com"
+                            data-theme="normal"
+                            data-proxy-url="https://3.redirect.appmetrica.yandex.com/route?start-lat={start-lat}&amp;start-lon={start-lon}&amp;end-lat={end-lat}&amp;end-lon={end-lon}&amp;ref={ref}&amp;appmetrica_tracking_id=1178268795219780156">
+                        </div>
+                    </div>
+                </div>
+
+                {% if dbRestaurantsSame|length > 0 %}
+                    <div class="widget_recommended">
+                        <div class="titleBlock">Рекомендуем</div>
+                        <ul class="list_face">
+                            {% for restaurant in dbRestaurantsSame %}
+                               <li>
+                                   {% if restaurant.pic.url %}
+                                        <a href="{% url 'guide:restaurant' restaurant.handle %}" class="images">
+                                            <img src="{{ restaurant.pic.url }}">
+                                        </a>
+                                   {% endif %}
+                                   <div class="infoBlock">
+                                       <a href="{% url 'guide:restaurant' restaurant.handle %}" class="title">{{restaurant.title}}</a>
+                                       {% if restaurant.rating %}
+                                            <div class="rating high">{{restaurant.rating}}</div>
+                                       {% endif %}
+                                       <a href="/category/restaurants/" class="place">Кошерный ресторан</a>
+                                       {% if restaurant.preview_text %}
+                                            <a href="#" class="location">{{restaurant.preview_text}}</a>
+                                       {% endif %}
+                                   </div>
+                               </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
             </div>
         </div>
-    {% endif %}
-
-    <div class="container about-org">
-        <p class="about-org__title">О ресторане</p>
-        <ul class="about-org__list">
-            <li>
-                <span class="about-org__list-title">Банковские карты</span>
-                <span class="about-org__list-value">
-                    {% if restaurant.bank_cards %}
-                        принимаются
-                    {% else %}
-                        не принимаются
-                    {% endif %}
-                </span>
-            </li>
-            <li>
-                <span class="about-org__list-title">Парковка</span>
-                <span class="about-org__list-value">
-                    {% if restaurant.parking_space %}
-                        есть
-                    {% else %}
-                        нет
-                    {% endif %}
-                </span>
-            </li>
-            <li>
-                <span class="about-org__list-title">Wi-Fi</span>
-                <span class="about-org__list-value">
-                    {% if restaurant.wifi %}
-                        есть
-                    {% else %}
-                        нет
-                    {% endif %}
-                </span>
-            </li>
-            <li>
-                <span class="about-org__list-title">Банкеты</span>
-                <span class="about-org__list-value">
-                    {% if restaurant.banquets %}
-                        есть
-                    {% else %}
-                        нет
-                    {% endif %}
-                </span>
-            </li>
-            <li>
-                <span class="about-org__list-title">Доставка</span>
-                <span class="about-org__list-value">
-                    {% if restaurant.delivery %}
-                        есть
-                    {% else %}
-                        нет
-                    {% endif %}
-                </span>
-            </li>
-            <li>
-                <span class="about-org__list-title">Бизнес-ланч</span>
-                <span class="about-org__list-value">
-                    {% if restaurant.business_lunch %}
-                        есть
-                    {% else %}
-                        нет
-                    {% endif %}
-                </span>
-            </li>
-            <li>
-                <span class="about-org__list-title">Средний чек</span>
-                <span class="about-org__list-value">
-                    {% if restaurant.average_account_min != '' and restaurant.average_account_max != '' %}
-                        {{restaurant.average_account_min}} — {{restaurant.average_account_max}} рублей
-                    {% endif %}
-
-                    {% if restaurant.average_account_min != '' and restaurant.average_account_max == '' %}
-                        {{restaurant.average_account_min}} рублей
-                    {% endif %}
-
-                    {% if restaurant.average_account_min == '' and restaurant.average_account_max != '' %}
-                        {{restaurant.average_account_max}} рублей
-                    {% endif %}
-                </span>
-            </li>
-        </ul>
-
-        <div class="kitchens">
-            {% for kitchen in kitchens %}
-                <a href="/category/restaurants/?kitchens={{ kitchen.handle }}" class="badge badge-primary">{{ kitchen.title }}</a>
-            {% endfor %}
-        </div>
     </div>
-
-    <div class="container contact-org">
-        <p class="contact-org__title">Контактная информация</p>
-        <ul class="contact-org__list">
-            {% if restaurant.address %}
-                <li>
-                    <span class="contact-org__list-title">Адрес</span>
-                    <span class="contact-org__list-value">{{ restaurant.address }}</span>
-                    <div class="yandex-taxi">
-                        <script src="//yastatic.net/taxi-widget/ya-taxi-widget.js"></script>
-                        <div class="ya-taxi-widget" data-use-location="true" data-size="xs" data-theme="normal" data-title="Вызвать такси" data-point-a="" data-point-b="{{restaurant.lng}},{{restaurant.lat}}" data-proxy-url="https://3.redirect.appmetrica.yandex.com/route?start-lat={start-lat}&amp;start-lon={start-lon}&amp;end-lat={end-lat}&amp;end-lon={end-lon}&amp;ref=https://kosherguide.pythonanywhere.com/&amp;appmetrica_tracking_id=1178268795219780156"></div>
-                    </div>
-                </li>
-            {% endif %}
-            {% if restaurant.subway %}
-                <li>
-                    <span class="contact-org__list-title">Метро</span>
-                    <span class="contact-org__list-value">{{ restaurant.subway }}</span>
-                </li>
-            {% endif %}
-            {% if restaurant.working_hours %}
-                <li>
-                    <span class="contact-org__list-title">Время работы</span>
-                    <span class="contact-org__list-value">{{ restaurant.working_hours }}</span>
-                </li>
-            {% endif %}
-            {% if phones|length > 0 %}
-              <li>
-                    <span class="contact-org__list-title">Телефон</span>
-                    <span class="contact-org__list-value">
-                        {% for phone in phones %}
-                            {{ phone.title }}{% if forloop.last == False %}, {% endif %}
-                        {% endfor %}
-                    </span>
-                </li>
-            {% endif %}
-            {% if emails|length > 0 %}
-                <li>
-                    <span class="contact-org__list-title">Почта</span>
-                    <span class="contact-org__list-value">
-                        {% for email in emails %}
-                            {{ email.title }}{% if forloop.last == False %}, {% endif %}
-                        {% endfor %}
-                    </span>
-                </li>
-            {% endif %}
-            {% if restaurant.site %}
-                <li>
-                    <span class="contact-org__list-title">Сайт</span>
-                    <a href="{{ restaurant.site }}" target="_blank" class="contact-org__list-value">{{ restaurant.site }}</a>
-                </li>
-            {% endif %}
-        </ul>
-    </div>
-
-    {% if jsonCoordinates != '' %}
-        <div class="container map-org">
-            <p class="map-org__title">Ресторан на карте</p>
-            <div id="json-coordinates" style="display:none;">{{jsonCoordinates}}</div>
-            <div id='map' class='map-org__map'></div>
-        </div>
-    {% endif %}
 {% endblock %}
+

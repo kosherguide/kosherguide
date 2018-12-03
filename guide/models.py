@@ -99,6 +99,7 @@ class Synagogue(models.Model):
     parking_space = models.BooleanField(verbose_name="Парковка", default=False)
     wifi = models.BooleanField(verbose_name="Wi-Fi", default=False)
     is_restaurant = models.BooleanField(verbose_name="Есть ресторан?", default=False)
+    rating = models.CharField(verbose_name="Рейтинг", max_length=200, blank=True, null=True)
 
     def publish(self):
         self.published_date = timezone.now()
@@ -148,6 +149,7 @@ class Restaurant(models.Model):
     banquets = models.BooleanField(verbose_name="Банкеты", default=False)
     delivery = models.BooleanField(verbose_name="Доставка", default=False)
     business_lunch = models.BooleanField(verbose_name="Бизнес-ланч", default=False)
+    rating = models.CharField(verbose_name="Рейтинг", max_length=200, blank=True, null=True)
 
     def publish(self):
         self.published_date = timezone.now()

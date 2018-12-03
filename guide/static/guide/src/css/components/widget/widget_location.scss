@@ -1,0 +1,25 @@
+.widget_location {
+  margin-bottom: 30px;
+  .wl_map {
+    padding: 0;
+    .ya-taxi-widget {
+      height: 280px!important;
+      .ya-taxi-widget__content {
+        border: none !important;
+      }
+      //ya-taxi-widget__content
+
+      .ya-taxi-widget__title {
+        font-size: 26px;
+      }
+      //ya-taxi-widget__title
+
+      .ya-taxi-widget__label,
+      .ya-taxi-widget__info-icon {
+        display: none!important;
+      }
+    }
+    //ya-taxi-widget
+  }
+}
+//widget_location

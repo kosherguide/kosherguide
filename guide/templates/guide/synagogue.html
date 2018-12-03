@@ -1,147 +1,159 @@
-{% extends 'guide/base.html' %}
+{% extends 'guide/layout.html' %}
 
 {% load static %}
 
-{% block extra_head %}
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.css' rel='stylesheet' />
+{% block head %}
+    <title>КошерГид - Синагоги</title>
 {% endblock %}
 
 {% block content %}
-    <div class="container breadcrumbs-block">
-        <p>
-            <a href="/category/synagogues/">Вернуться к синагогам</a>
-        </p>
-    </div>
+    <div class="row cf_detail">
+        <div class="container">
+            <div class="dt_content">
+                <a href="/category/synagogues/" class="btnBack">Вернуться к синагогам</a>
+                <div class="dt_viewBlock Block wh_bl">
+                   <div class="category">Кошерный ресторан</div>
+                   <h2 class="title"> {{synagogue.title}}
+                        {% if restaurant.rating %}
+                           <div class="ratingScore" data-score="{{restaurant.rating}}">
+                               <div class="count">{{restaurant.rating}}</div>
+                               <div class="score">
+                                   <span></span>
+                                   <span></span>
+                                   <span></span>
+                                   <span></span>
+                                   <span></span>
+                               </div>
+    {#                            <a href="" class="btnReviews">#}
+    {#                                Отзывов:#}
+    {#                                <span>37</span>#}
+    {#                            </a>#}
+                           </div>
+                       {% endif %}
+                   </h2>
 
-    <div class="container common-block">
-        <p class="display-4">{{synagogue.title}}</p>
-        {% if synagogue.country and synagogue.city %}
-            <p>
-                <mark>
-                    {% if synagogue.country %}
-                        {{synagogue.country}},
+                   {% if gallery|length > 0 %}
+                       <div class="detailCarousel imageGallery">
+                           {% for g in gallery %}
+                               <a href="{{ g.image.url }}" class="item">
+                                   <img src="{{ g.image.url }}" alt="" class="image">
+                               </a>
+                           {% endfor %}
+                        </div>
+                   {% endif %}
+
+                    {% if synagogue.text != '' %}
+                        <div class="titleBlock">Описание
+                            <div class="workingHours">Открыто до 00:00</div>
+                        </div>
+                        <div class="description">
+                            <p>{{synagogue.text}}</p>
+                        </div>
                     {% endif %}
-                       {% if synagogue.city %}
-                        {{synagogue.city}}
-                    {% endif %}
-                </mark>
-            </p>
-        {% endif %}
-    </div>
 
-    {% if synagogue.text != '' %}
-        <div class="container detail-text">
-            <p class="detail-org__text">{{synagogue.text}}</p>
-        </div>
-    {% endif %}
+{#                   <div class="buttons">#}
+{#                       <a href="" class="btnGreen btn_sendReview">Написать отзыв</a>#}
+{#                    </div>#}
+               </div>
 
-    {% if gallery|length > 0 %}
-        <div class="container slider-block">
-             <div class="slider slick-slider">
-                {% for g in gallery %}
-                 <div>
-                     <div class="bgCover" style="background-image: url('{{ g.image.url }}')" ></div>
-                 </div>
-                {% endfor %}
+                <div class="dt_infoBlock">
+                    <div class="titleBlock">О синагоге</div>
+                    <ul class="listInfo wh_bl">
+                        {% if synagogue.address %}
+                            <li>
+                                <div class="name">Адрес</div>
+                                <div class="info">{{ synagogue.address }}</div>
+                            </li>
+                        {% endif %}
+                        {% if phones|length > 0 %}
+                            <li>
+                                <div class="name">Телефон</div>
+                                <div class="info">{% for phone in phones %}{{ phone.title }}{% if forloop.last == False %}, {% endif %}{% endfor %}</div>
+                            </li>
+                        {% endif %}
+                        {% if synagogue.working_hours %}
+                            <li>
+                                <div class="name">Часы работы</div>
+                                <div class="info">{{ synagogue.working_hours }}</div>
+                            </li>
+                        {% endif %}
+                        <li>
+                            <div class="name">Парковка</div>
+                            <div class="info">
+                                {% if synagogue.parking_space %} есть {% else %} нет {% endif %}
+                            </div>
+                        </li>
+                        <li>
+                            <div class="name">Wi-Fi</div>
+                            <div class="info">
+                                {% if restaurant.wifi %} есть {% else %} нет {% endif %}
+                            </div>
+                        </li>
+                        <li>
+                            <div class="name">Есть ресторан</div>
+                            <div class="info">
+                                {% if synagogue.is_restaurant %} есть {% else %} нет {% endif %}
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                {% if jsonCoordinates != '' %}
+                    <div class="dt_mapBlock">
+                        <div class="titleBlock">Синагога на карте</div>
+                        <div class="wrapper wh_bl">
+                            <div id="json-coordinates" style="display:none;">{{jsonCoordinates}}</div>
+                            <div id='map' class='map-org__map'></div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="dt_rightSide">
+                <div class="widget_location">
+                    <div class="titleBlock">Вызвать такси</div>
+                    <div class="wl_map wh_bl">
+                        <script src="//yastatic.net/taxi-widget/ya-taxi-widget.js"></script>
+                        <div class="ya-taxi-widget"
+                            data-use-location="true"
+                            data-size="m"
+                            data-title=""
+                            data-point-a=""
+                            data-point-b="{{ synagogue.lng }},{{ synagogue.lat }}"
+                            data-ref="https://kosherguide.pythonanywhere.com"
+                            data-theme="normal"
+                            data-proxy-url="https://3.redirect.appmetrica.yandex.com/route?start-lat={start-lat}&amp;start-lon={start-lon}&amp;end-lat={end-lat}&amp;end-lon={end-lon}&amp;ref={ref}&amp;appmetrica_tracking_id=1178268795219780156">
+                        </div>
+                    </div>
+                </div>
+
+                {% if dbSynagoguesSame|length > 0 %}
+                    <div class="widget_recommended">
+                        <div class="titleBlock">Рекомендуем</div>
+                        <ul class="list_face">
+                            {% for synagogue in dbSynagoguesSame %}
+                               <li>
+                                  {% if synagogue.pic.url %}
+                                        <a href="{% url 'guide:synagogue' synagogue.handle %}" class="images">
+                                            <img src="{{ synagogue.pic.url }}">
+                                        </a>
+                                   {% endif %}
+                                   <div class="infoBlock">
+                                       <a href="{% url 'guide:synagogue' synagogue.handle %}" class="title">{{synagogue.title}}</a>
+                                       {% if synagogue.rating %}
+                                            <div class="rating high">{{synagogue.rating}}</div>
+                                       {% endif %}
+                                       <a href="/category/synagogues/" class="place">Синагога</a>
+                                       {% if synagogue.preview_text %}
+                                            <a href="#" class="location">{{synagogue.preview_text}}</a>
+                                       {% endif %}
+                                   </div>
+                               </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
             </div>
         </div>
-    {% endif %}
-
-    <div class="container about-org">
-        <p class="about-org__title">О Синагоге</p>
-        <ul class="about-org__list">
-            <li>
-                <span class="about-org__list-title">Парковка</span>
-                <span class="about-org__list-value">
-                    {% if synagogue.parking_space %}
-                        есть
-                    {% else %}
-                        нет
-                    {% endif %}
-                </span>
-            </li>
-            <li>
-                <span class="about-org__list-title">Wi-Fi</span>
-                <span class="about-org__list-value">
-                    {% if synagogue.wifi %}
-                        есть
-                    {% else %}
-                        нет
-                    {% endif %}
-                </span>
-            </li>
-            <li>
-                <span class="about-org__list-title">Есть ресторан</span>
-                <span class="about-org__list-value">
-                    {% if synagogue.is_restaurant %}
-                        есть
-                    {% else %}
-                        нет
-                    {% endif %}
-                </span>
-        </ul>
     </div>
-
-    <div class="container contact-org">
-        <p class="contact-org__title">Контактная информация</p>
-        <ul class="contact-org__list">
-            {% if synagogue.address %}
-                <li>
-                    <span class="contact-org__list-title">Адрес</span>
-                    <span class="contact-org__list-value">{{ synagogue.address }}</span>
-                    <div class="yandex-taxi">
-                        <script src="//yastatic.net/taxi-widget/ya-taxi-widget.js"></script>
-                        <div class="ya-taxi-widget" data-use-location="true" data-size="xs" data-theme="normal" data-title="Вызвать такси" data-point-a="" data-point-b="{{synagogue.lng}},{{synagogue.lat}}" data-proxy-url="https://3.redirect.appmetrica.yandex.com/route?start-lat={start-lat}&amp;start-lon={start-lon}&amp;end-lat={end-lat}&amp;end-lon={end-lon}&amp;ref=https://kosherguide.pythonanywhere.com/&amp;appmetrica_tracking_id=1178268795219780156"></div>
-                    </div>
-                </li>
-            {% endif %}
-            {% if synagogue.subway %}
-                <li>
-                    <span class="contact-org__list-title">Метро</span>
-                    <span class="contact-org__list-value">{{ synagogue.subway }}</span>
-                </li>
-            {% endif %}
-            {% if synagogue.working_hours %}
-                <li>
-                    <span class="contact-org__list-title">Время работы</span>
-                    <span class="contact-org__list-value">{{ synagogue.working_hours }}</span>
-                </li>
-            {% endif %}
-            {% if phones|length > 0 %}
-              <li>
-                    <span class="contact-org__list-title">Телефон</span>
-                    <span class="contact-org__list-value">
-                        {% for phone in phones %}
-                            {{ phone.title }}{% if forloop.last == False %}, {% endif %}
-                        {% endfor %}
-                    </span>
-                </li>
-            {% endif %}
-            {% if emails|length > 0 %}
-                <li>
-                    <span class="contact-org__list-title">Почта</span>
-                    <span class="contact-org__list-value">
-                        {% for email in emails %}
-                            {{ email.title }}{% if forloop.last == False %}, {% endif %}
-                        {% endfor %}
-                    </span>
-                </li>
-            {% endif %}
-            {% if synagogue.site %}
-                <li>
-                    <span class="contact-org__list-title">Сайт</span>
-                    <a href="{{ synagogue.site }}" target="_blank" class="contact-org__list-value">{{ synagogue.site }}</a>
-                </li>
-            {% endif %}
-        </ul>
-    </div>
-
-    {% if jsonCoordinates != '' %}
-        <div class="container map-org">
-            <p class="map-org__title">Синагога на карте</p>
-            <div id="json-coordinates" style="display:none;">{{jsonCoordinates}}</div>
-            <div id='map' class='map-org__map'></div>
-        </div>
-    {% endif %}
 {% endblock %}

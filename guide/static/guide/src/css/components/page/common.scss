@@ -1,0 +1,129 @@
+.titleBlock {
+  font-size: 20px;
+  font-weight: 600;
+  color: #414141;
+  margin: 0 auto 20px;
+}
+//titleBlock
+
+.titlePage {
+  font-size: 28px;
+  line-height: 32px;
+  font-weight: 300;
+  color: $color_title-page;
+  margin: 0 auto 20px;
+
+  &.is-center {
+    text-align: center;
+  }
+  //is-center
+}
+//titlePage
+
+.textPage {
+  font-size: 18px;
+  font-weight: 300;
+  color: $color_text-page;
+  margin: 0 auto 20px;
+
+  &.is-center {
+    text-align: center;
+  }
+  //is-center
+}
+//textPage
+
+.titleInner {
+  font-size: 22px;
+  font-weight: 300;
+  color: #244fe1;
+  margin: 0 0 20px;
+  display: block;
+}
+//titleInner
+
+.lineTitle {
+  position: relative;
+  font-size: 20px;
+  line-height: 30px;
+  border-bottom: 2px solid #e5e5e5;
+  font-weight: 400;
+  padding: 10px 0;
+  color: $color_title-page;
+  margin: 0 0 20px;
+  display: block;
+  @include clearfix;
+  .gridPanel {
+    display: flex;
+    float: right;
+    span {
+      font-size: 20px;
+      line-height: 1;
+      border-radius: 3px;
+      background-color: #fff;
+      color: #999999;
+      margin: 0 0 0 7px;
+      padding: 4px;
+      display: inline-block;
+      cursor: pointer;
+      &.is-active {
+        color: #000;
+      }
+    }
+  }
+  //gridPanel
+}
+//lineTitle
+
+.formBlock {
+  position: relative;
+  max-width: 510px;
+  width: 100%;
+  border-radius: 5px;
+  background-color: #fff;
+  display: block;
+  margin: 0 auto;
+  padding: 30px 40px;
+}
+//formBlock
+
+.wh_bl {
+    position: relative;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px -1px #ddd;
+    margin: 0 0 40px;
+    padding: 10px 30px;
+}
+//wh_bl
+
+.wh_form {
+  position: relative;
+  max-width: 510px;
+  width: 100%;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 20px;
+  margin: 0 auto;
+  display: block;
+}
+//wh_form
+
+@media all and (max-width: $mediaThree) {
+  .titlePage {
+    font-size: 22px;
+    line-height: 26px;
+  }
+  //titlePage
+
+  .textPage {
+    font-size: 15px;
+    line-height: 18px;
+  }
+  //textPage
+
+  .wh_form {
+    padding: 10px;
+  }
+  //wh_form
+}

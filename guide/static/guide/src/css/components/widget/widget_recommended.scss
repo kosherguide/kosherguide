@@ -1,0 +1,94 @@
+.widget_recommended {
+  @include roboto;
+  margin: 0 0 40px;
+  display: block;
+
+  .list_face {
+    li {
+      position: relative;
+      margin: 0 0 20px;
+      .images {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: auto;
+        display: block;
+        img {
+          width: 80px;
+          height: 80px;
+          border-radius: 3px;
+        }
+      }
+      //images
+      .infoBlock {
+        position: relative;
+        min-height: 80px;
+        margin: 0 0 0 94px;
+        padding: 0;
+        .title {
+          font-size: 16px;
+          font-weight: 500;
+          color: #244fe1;
+          border-bottom: 1px solid transparent;
+          margin: 0 0 5px;
+          display: inline-block;
+          text-decoration: none;
+          @include transition(border-bottom .3s ease);
+          &:hover {
+            border-bottom: 1px solid #244fe1;
+          }
+        }
+        //title
+
+        .rating {
+          position: relative;
+          top: -3px;
+          font-size: 15px;
+          font-weight: bold;
+          line-height: 34px;
+          width: 33px;
+          height: 33px;
+          color: #ffffff;
+          float: right;
+          border-radius: 50%;
+          text-align: center;
+          display: inline-block;
+
+          &.low {
+            background-color: #ff9600;
+          }
+          &.medium {
+            background-color: #c5de35;
+          }
+          &.high {
+            background-color: #73cf42;
+          }
+        }
+        //rating
+
+        .place {
+          font-size: 14px;
+          line-height: 20px;
+          font-weight: 400;
+          color: #777777;
+          text-decoration: none;
+          display: block;
+        }
+        //place
+
+        .location {
+          font-size: 13px;
+          line-height: 18px;
+          font-weight: 400;
+          color: #777777;
+          text-decoration: none;
+          display: block;
+        }
+        //location
+      }
+      //infoBlock
+    }
+  }
+  //list_face
+}
+//widget_recommended
