@@ -44,7 +44,12 @@
                 {% for category in categories %}
                     <article class="item">
                         <div class="wrapper">
-                            <a href="" class="it_pic">
+                            {% if category.handle == 'restaurants' %}
+                            <a href="{% url 'guide:restaurants' %}" class="it_pic">{{ category.title }}
+                            {% endif %}
+                            {% if category.handle == 'synagogues' %}
+                            <a href="{% url 'guide:synagogues' %}" class="it_pic">{{ category.title }}
+                            {% endif %}
                                 <div class="imageCover ratio-3-4">
                                     <div class="placeholder" style="background-image: url('{{ category.pic.url }}')"></div>
                                     <img src="{{ category.pic.url }}" alt="" class="image">
@@ -91,24 +96,20 @@
                 {% for post in posts %}
                     <article class="item wide">
                         <div class="wrapper">
-                            <a href="" class="it_pic">
+                            <a href="{% url 'guide:post' post.id %}" class="it_pic">
                                 <div class="imageCover ratio-3-4">
                                     <div class="placeholder" style="background-image: url('{{ post.pic.url }}')"></div>
                                     <img src="{{ post.pic.url }}" alt="" class="image">
                                 </div>
                             </a>
-
                             <div class="it_content">
-                                <h2 class="title">
-                                       <a href="{% url 'guide:post' post.id %}">{{ post.title }}</a>
-                                </h2>
+                                <h2 class="title"><a href="{% url 'guide:post' post.id %}">{{ post.title }}</a></h2>
                                 <div class="description">{{ post.preview_text }}</div>
                             </div>
                         </div>
                     </article>
                 {% endfor %}
             </section>
-
         </div>
     </div>
 {% endblock %}

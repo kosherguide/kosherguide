@@ -1392,31 +1392,35 @@ $(document).ready(function(){
         });
         map.on('load', function (e) {
             // Add the data to your map as a layer
-            map.addLayer({
-                id: 'locations',
-                type: 'symbol',
-                // Add a GeoJSON source containing place coordinates and information.
-                source: {
-                    type: 'geojson',
-                    data: {
-                        "type": "FeatureCollection",
-                        "features": [{
-                            "type": "Feature",
-                            "geometry": {
-                                "type": "Point",
-                                "coordinates": [
-                                    coordinates.lng,
-                                    coordinates.lat
-                                ]
-                            },
-                            "properties": {}
-                        }]
+            map.loadImage('/static/guide/images/map.png', function (error, image) {
+                if (error) throw error;
+                map.addImage('marker', image);
+                map.addLayer({
+                    id: 'locations',
+                    type: 'symbol',
+                    // Add a GeoJSON source containing place coordinates and information.
+                    source: {
+                        type: 'geojson',
+                        data: {
+                            "type": "FeatureCollection",
+                            "features": [{
+                                "type": "Feature",
+                                "geometry": {
+                                    "type": "Point",
+                                    "coordinates": [
+                                        coordinates.lng,
+                                        coordinates.lat
+                                    ]
+                                },
+                                "properties": {}
+                            }]
+                        }
+                    },
+                    layout: {
+                        'icon-image': 'marker',
+                        'icon-allow-overlap': true,
                     }
-                },
-                layout: {
-                    'icon-image': 'restaurant-15',
-                    'icon-allow-overlap': true,
-                }
+                });
             });
         });
     }
@@ -1466,6 +1470,7 @@ $(document).ready(function() {
     submitIcon.click(function () {
         if (isOpen == false) {
             searchBox.addClass('sb-search-open');
+            submitInput.focus();
             isOpen = true;
         } else {
             searchBox.removeClass('sb-search-open');

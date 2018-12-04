@@ -36,8 +36,9 @@ $(document).ready(function() {
                 data: stores
             },
             layout: {
-                'icon-image': 'restaurant-15',
                 'icon-allow-overlap': true,
+                "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+                "text-offset": [10, 10],
             }
         });
 

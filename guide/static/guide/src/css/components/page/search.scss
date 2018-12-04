@@ -1,0 +1,63 @@
+.cf_search {
+  .searchContent {
+    margin: 0 0 30px;
+  }
+  //searchContent
+
+  .search-wrapper {
+    position: relative;
+    border-radius: 5px;
+    padding: 20px;
+    .search-query {
+      font-size: 18px;
+      font-weight: 600;
+      color: #414141;
+      margin: 0 auto 25px;
+      display: block;
+    }
+    //search-query
+  }
+  //search-wrapper
+}
+//cf_search
+
+.cf_newsDetail {
+  .title {
+    font-family: 'Montserrat-SemiBold', sans-serif;
+    font-size: 24px;
+    line-height: 32px;
+    color: #000;
+    margin: 0 0 20px;
+    display: block;
+  }
+  //title
+
+  .time {
+    font-size: 13px;
+    color: #999999;
+    text-transform: uppercase;
+    margin: 0 0 30px;
+    display: block;
+  }
+  //time
+
+  .image {
+    position: relative;
+    max-width: 100%;
+    margin: 0 0 30px;
+    display: block;
+  }
+  //image
+
+  .text {
+    font-size: 16px;
+    line-height: 28px;
+    color: #333;
+    display: block;
+    p {
+      margin: 0 0 30px;
+    }
+  }
+  //text
+}
+//cf_newsDetail

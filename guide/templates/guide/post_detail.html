@@ -1,11 +1,18 @@
-{% extends 'guide/base.html' %}
+{% extends 'guide/layout.html' %}
 
 {% load static %}
 
+{% block head %}
+    <title>КошерГид - Карта</title>
+{% endblock %}
+
 {% block content %}
-    <div class="starter-template container">
-        <h1>{{post.title}}</h1>
-        <img src="{{ post.pic.url }}">
-        <p class="lead">{{post.text}}</p>
+    <div class="row cf_newsDetail">
+        <div class="container">
+            <div class="title">{{post.title}}</div>
+            <time class="time">{{post.published_date}}</time>
+            <img class="image" src="{{ post.pic.url }}">
+            <div class="text">{{post.text}}</div>
+        </div>
     </div>
 {% endblock %}

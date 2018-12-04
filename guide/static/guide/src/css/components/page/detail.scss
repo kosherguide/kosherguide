@@ -295,6 +295,11 @@
 
         #map {
           height: 300px;
+
+          .mapboxgl-ctrl-bottom-left,
+          .mapboxgl-ctrl-bottom-right {
+            display: none !important;
+          }
         }
         //map
       }

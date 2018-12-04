@@ -1675,6 +1675,84 @@ body {
     display: inline-block;
     cursor: pointer; }
 
+.searchContent {
+  position: relative;
+  width: 100%;
+  border-radius: 3px;
+  overflow: hidden;
+  background-color: #fff;
+  height: 80px;
+  display: table; }
+  .searchContent .icon {
+    position: absolute;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    right: 0;
+    width: 90px;
+    height: 40px;
+    fill: #ffffff;
+    padding: 12px 0;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease; }
+    .searchContent .icon:hover {
+      fill: #afadad; }
+  .searchContent .formSearch {
+    position: relative;
+    outline: 2px solid #00b551; }
+    .searchContent .formSearch.is-show .icon {
+      opacity: 1;
+      -moz-opacity: 1;
+      filter: alpha(opacity=1);
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=1)"; }
+    .searchContent .formSearch #search {
+      font-size: 18px;
+      font-weight: 400;
+      width: 100%;
+      height: 80px;
+      border: 1px solid #e5e5e5;
+      border-right-width: 0;
+      background-color: transparent;
+      outline: 0;
+      color: #000000;
+      margin: 0;
+      padding: 10px 90px 10px 40px;
+      display: block; }
+    .searchContent .formSearch .icon {
+      opacity: 0;
+      -moz-opacity: 0;
+      filter: alpha(opacity=0);
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; }
+  .searchContent .btnSearch {
+    width: 90px;
+    min-height: 80px;
+    background-color: #00b551;
+    fill: #000000;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    cursor: pointer;
+    transition: all 0.3s ease; }
+    .searchContent .btnSearch .icon {
+      padding: 9px 0; }
+    .searchContent .btnSearch .submit {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 90px;
+      border: none;
+      background-color: transparent;
+      outline: 0;
+      margin: auto;
+      z-index: 1;
+      cursor: pointer; }
+    .searchContent .btnSearch:hover {
+      background-color: #019e48; }
+      .searchContent .btnSearch:hover .icon {
+        fill: #ffffff; }
+
 .blockArrow {
   position: absolute;
   top: 50%;
@@ -3492,6 +3570,9 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
       padding: 10px; }
       .cf_detail .dt_content .dt_mapBlock .wrapper #map {
         height: 300px; }
+        .cf_detail .dt_content .dt_mapBlock .wrapper #map .mapboxgl-ctrl-bottom-left,
+        .cf_detail .dt_content .dt_mapBlock .wrapper #map .mapboxgl-ctrl-bottom-right {
+          display: none !important; }
   .cf_detail .dt_rightSide {
     position: relative;
     max-width: 330px;
@@ -3545,15 +3626,29 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
     .cf_filterPage .fp_container .navbar .formFilter .formGroup {
       position: relative;
       border-radius: 3px;
+      border: 1px solid #e5e5e5;
       background-color: #fff;
       display: block;
       margin: 0 0 20px; }
+      .cf_filterPage .fp_container .navbar .formFilter .formGroup:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        font-size: 0;
+        width: 25px;
+        height: 7px;
+        color: #999999;
+        background: #fff url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iOXB4IiBoZWlnaHQ9IjdweCI+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgZmlsbD0icmdiKDQ1LCA0NSwgNDUpIiBkPSJNNC43NzksNi4xODIgTDEuMTQ0LDIuMjM0IEMwLjc2MCwxLjgxOCAwLjc2MCwxLjE0NCAxLjE0NCwwLjcyOCBDMS41MjcsMC4zMTIgMi4xNDgsMC4zMTIgMi41MzEsMC43MjggTDQuNzc5LDMuMTcwIEw3LjAyOSwwLjcyOCBDNy40MTIsMC4zMTIgOC4wMzMsMC4zMTIgOC40MTYsMC43MjggQzguNzk5LDEuMTQ0IDguNzk5LDEuODE4IDguNDE2LDIuMjM0IEw0Ljc3OSw2LjE4MiBaIj48L3BhdGg+Cjwvc3ZnPg==") no-repeat;
+        margin: auto;
+        display: inline-block; }
       .cf_filterPage .fp_container .navbar .formFilter .formGroup select {
         border: none;
         background-color: transparent;
         width: 100%;
         height: 44px;
-        padding: 10px;
+        padding: 10px 15px;
         cursor: pointer; }
     .cf_filterPage .fp_container .navbar .formFilter .buttons {
       position: relative;
@@ -3586,10 +3681,9 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
   .cf_map #map {
     position: absolute;
     top: 0;
-    left: 22%;
     right: 0;
     bottom: 0;
-    width: 78%;
+    width: calc(100% - 430px);
     height: 100%;
     display: table-cell;
     vertical-align: top;
@@ -3602,6 +3696,23 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
       bottom: 0;
       margin: auto;
       display: block; }
+    .cf_map #map .mapboxgl-ctrl-bottom-left,
+    .cf_map #map .mapboxgl-ctrl-bottom-right {
+      display: none !important; }
+    .cf_map #map .mapboxgl-popup-content {
+      font-family: 'Open Sans', sans-serif;
+      max-width: 250px;
+      border-radius: 5px;
+      overflow: hidden;
+      padding: 0; }
+      .cf_map #map .mapboxgl-popup-content h3 {
+        background-color: #2ec170;
+        color: #fff;
+        padding: 10px 16px;
+        font-size: 13px; }
+      .cf_map #map .mapboxgl-popup-content h4 {
+        padding: 10px 16px;
+        font-size: 11px; }
   .cf_map > .content {
     position: absolute;
     top: 0;
@@ -3747,6 +3858,49 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
           color: #999;
           font-weight: 400;
           display: block; }
+
+.cf_search .searchContent {
+  margin: 0 0 30px; }
+
+.cf_search .search-wrapper {
+  position: relative;
+  border-radius: 5px;
+  padding: 20px; }
+  .cf_search .search-wrapper .search-query {
+    font-size: 18px;
+    font-weight: 600;
+    color: #414141;
+    margin: 0 auto 25px;
+    display: block; }
+
+.cf_newsDetail .title {
+  font-family: 'Montserrat-SemiBold', sans-serif;
+  font-size: 24px;
+  line-height: 32px;
+  color: #000;
+  margin: 0 0 20px;
+  display: block; }
+
+.cf_newsDetail .time {
+  font-size: 13px;
+  color: #999999;
+  text-transform: uppercase;
+  margin: 0 0 30px;
+  display: block; }
+
+.cf_newsDetail .image {
+  position: relative;
+  max-width: 100%;
+  margin: 0 0 30px;
+  display: block; }
+
+.cf_newsDetail .text {
+  font-size: 16px;
+  line-height: 28px;
+  color: #333;
+  display: block; }
+  .cf_newsDetail .text p {
+    margin: 0 0 30px; }
 
 .widget_location {
   margin-bottom: 30px; }

@@ -50,6 +50,7 @@ $(document).ready(function() {
     submitIcon.click(function () {
         if (isOpen == false) {
             searchBox.addClass('sb-search-open');
+            submitInput.focus();
             isOpen = true;
         } else {
             searchBox.removeClass('sb-search-open');
