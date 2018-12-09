@@ -32,10 +32,10 @@
                        {% endif %}
                    </h2>
 
-                   {% if gallery|length > 0 %}
+                    {% if gallery|length > 0 %}
                        <div class="detailCarousel imageGallery">
                            {% for g in gallery %}
-                               <a href="{{ g.image.url }}" class="item">
+                               <a href="{{ g.image.url }}" style="background-image: url({{ g.image.url }})" class="item">
                                    <img src="{{ g.image.url }}" alt="" class="image">
                                </a>
                            {% endfor %}

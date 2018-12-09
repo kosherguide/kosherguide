@@ -3407,15 +3407,21 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
         font-size: 15px;
         line-height: 15px;
         color: #777777;
-        margin: 0 0 7px;
+        margin: 0 0 15px;
         display: block; }
       .cf_detail .dt_content .dt_viewBlock .title {
+        position: relative;
         font-size: 28px;
         font-weight: 400;
         line-height: 28px;
         color: #333333;
         margin: 0 0 30px;
+        padding-right: 160px;
         display: block; }
+        .cf_detail .dt_content .dt_viewBlock .title .ratingScore {
+          position: absolute;
+          top: 5px;
+          right: 0; }
       .cf_detail .dt_content .dt_viewBlock .ratingScore {
         float: right; }
       .cf_detail .dt_content .dt_viewBlock .btnReviews {
@@ -3443,6 +3449,10 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
         .cf_detail .dt_content .dt_viewBlock .detailCarousel .item {
           position: relative;
           width: 100%;
+          height: 100%;
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
           display: block;
           margin: 0 5px; }
           .cf_detail .dt_content .dt_viewBlock .detailCarousel .item:before, .cf_detail .dt_content .dt_viewBlock .detailCarousel .item:after {
@@ -3459,7 +3469,11 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
             position: absolute;
             top: 0;
             width: 100%;
-            height: 100%; }
+            height: 100%;
+            opacity: 0;
+            -moz-opacity: 0;
+            filter: alpha(opacity=0);
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; }
         .cf_detail .dt_content .dt_viewBlock .detailCarousel .owl-nav {
           position: absolute;
           left: 0;
@@ -3917,149 +3931,76 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
         display: none !important; }
 
 .widget_recommended {
-  font-family: 'Roboto', sans-serif;
   margin: 0 0 40px;
   display: block; }
-  .widget_recommended .list_face li {
+  .widget_recommended .list_face {
     position: relative;
-    margin: 0 0 20px; }
-    .widget_recommended .list_face li .images {
-      position: absolute;
-      top: 0;
-      left: 0;
-      margin: auto;
-      display: block; }
-      .widget_recommended .list_face li .images img {
-        width: 80px;
-        height: 80px;
-        border-radius: 3px; }
-    .widget_recommended .list_face li .infoBlock {
+    margin: 0 0 30px;
+    padding: 20px; }
+    .widget_recommended .list_face li {
       position: relative;
-      min-height: 80px;
-      margin: 0 0 0 94px;
-      padding: 0; }
-      .widget_recommended .list_face li .infoBlock .title {
-        font-size: 16px;
-        font-weight: 500;
-        color: #244fe1;
-        border-bottom: 1px solid transparent;
-        margin: 0 0 5px;
-        display: inline-block;
-        text-decoration: none;
-        transition: border-bottom 0.3s ease; }
-        .widget_recommended .list_face li .infoBlock .title:hover {
-          border-bottom: 1px solid #244fe1; }
-      .widget_recommended .list_face li .infoBlock .rating {
+      margin: 0 0 20px; }
+      .widget_recommended .list_face li:last-child {
+        margin-bottom: 0; }
+      .widget_recommended .list_face li .images {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: auto;
+        display: block; }
+        .widget_recommended .list_face li .images img {
+          width: 70px;
+          height: 70px;
+          border-radius: 3px; }
+      .widget_recommended .list_face li .infoBlock {
         position: relative;
-        top: -3px;
-        font-size: 15px;
-        font-weight: bold;
-        line-height: 34px;
-        width: 33px;
-        height: 33px;
-        color: #ffffff;
-        float: right;
-        border-radius: 50%;
-        text-align: center;
-        display: inline-block; }
-        .widget_recommended .list_face li .infoBlock .rating.low {
-          background-color: #ff9600; }
-        .widget_recommended .list_face li .infoBlock .rating.medium {
-          background-color: #c5de35; }
-        .widget_recommended .list_face li .infoBlock .rating.high {
-          background-color: #73cf42; }
-      .widget_recommended .list_face li .infoBlock .place {
-        font-size: 14px;
-        line-height: 20px;
-        font-weight: 400;
-        color: #777777;
-        text-decoration: none;
-        display: block; }
-      .widget_recommended .list_face li .infoBlock .location {
-        font-size: 13px;
-        line-height: 18px;
-        font-weight: 400;
-        color: #777777;
-        text-decoration: none;
-        display: block; }
-
-.widget_location {
-  margin-bottom: 30px; }
-  .widget_location .wl_map {
-    padding: 0; }
-    .widget_location .wl_map .ya-taxi-widget {
-      height: 280px !important; }
-      .widget_location .wl_map .ya-taxi-widget .ya-taxi-widget__content {
-        border: none !important; }
-      .widget_location .wl_map .ya-taxi-widget .ya-taxi-widget__title {
-        font-size: 26px; }
-      .widget_location .wl_map .ya-taxi-widget .ya-taxi-widget__label,
-      .widget_location .wl_map .ya-taxi-widget .ya-taxi-widget__info-icon {
-        display: none !important; }
-
-.widget_recommended {
-  font-family: 'Roboto', sans-serif;
-  margin: 0 0 40px;
-  display: block; }
-  .widget_recommended .list_face li {
-    position: relative;
-    margin: 0 0 20px; }
-    .widget_recommended .list_face li .images {
-      position: absolute;
-      top: 0;
-      left: 0;
-      margin: auto;
-      display: block; }
-      .widget_recommended .list_face li .images img {
-        width: 80px;
-        height: 80px;
-        border-radius: 3px; }
-    .widget_recommended .list_face li .infoBlock {
-      position: relative;
-      min-height: 80px;
-      margin: 0 0 0 94px;
-      padding: 0; }
-      .widget_recommended .list_face li .infoBlock .title {
-        font-size: 16px;
-        font-weight: 500;
-        color: #244fe1;
-        border-bottom: 1px solid transparent;
-        margin: 0 0 5px;
-        display: inline-block;
-        text-decoration: none;
-        transition: border-bottom 0.3s ease; }
-        .widget_recommended .list_face li .infoBlock .title:hover {
-          border-bottom: 1px solid #244fe1; }
-      .widget_recommended .list_face li .infoBlock .rating {
-        position: relative;
-        top: -3px;
-        font-size: 15px;
-        font-weight: bold;
-        line-height: 34px;
-        width: 33px;
-        height: 33px;
-        color: #ffffff;
-        float: right;
-        border-radius: 50%;
-        text-align: center;
-        display: inline-block; }
-        .widget_recommended .list_face li .infoBlock .rating.low {
-          background-color: #ff9600; }
-        .widget_recommended .list_face li .infoBlock .rating.medium {
-          background-color: #c5de35; }
-        .widget_recommended .list_face li .infoBlock .rating.high {
-          background-color: #73cf42; }
-      .widget_recommended .list_face li .infoBlock .place {
-        font-size: 14px;
-        line-height: 20px;
-        font-weight: 400;
-        color: #777777;
-        text-decoration: none;
-        display: block; }
-      .widget_recommended .list_face li .infoBlock .location {
-        font-size: 13px;
-        line-height: 18px;
-        font-weight: 400;
-        color: #777777;
-        text-decoration: none;
-        display: block; }
+        min-height: 80px;
+        margin: 0 0 0 85px;
+        padding: 0; }
+        .widget_recommended .list_face li .infoBlock .title {
+          font-size: 15px;
+          font-weight: 700;
+          color: #414141;
+          margin: 0 0 5px;
+          display: block;
+          text-decoration: none;
+          transition: color 0.3s ease; }
+          .widget_recommended .list_face li .infoBlock .title:hover {
+            color: #00b551; }
+        .widget_recommended .list_face li .infoBlock .rating {
+          position: absolute;
+          top: 0;
+          right: 0;
+          font-size: 13px;
+          font-weight: bold;
+          width: 26px;
+          height: 26px;
+          line-height: 26px;
+          border-radius: 4px;
+          color: #ffffff;
+          text-align: center;
+          display: inline-block; }
+          .widget_recommended .list_face li .infoBlock .rating.low {
+            background-color: #ff9600; }
+          .widget_recommended .list_face li .infoBlock .rating.medium {
+            background-color: #c5de35; }
+          .widget_recommended .list_face li .infoBlock .rating.high {
+            background-color: #73cf42; }
+        .widget_recommended .list_face li .infoBlock .place {
+          font-size: 12px;
+          line-height: 10px;
+          color: #555;
+          border-bottom: 1px solid transparent;
+          margin: 0 0 2px;
+          padding: 0 0 4px;
+          display: inline-block;
+          transition: all 0.3s ease; }
+          .widget_recommended .list_face li .infoBlock .place:hover {
+            border-color: #dcdcdc; }
+        .widget_recommended .list_face li .infoBlock .location {
+          font-size: 12px;
+          line-height: 18px;
+          font-weight: 400;
+          color: #000;
+          text-decoration: none;
+          display: block; }
