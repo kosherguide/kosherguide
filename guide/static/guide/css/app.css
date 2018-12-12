@@ -775,7 +775,6 @@ body {
     .news-th .item .wrapper,
     .news-th-list .item .wrapper {
       position: relative;
-      border-radius: 5px;
       overflow: hidden; }
     .news-th .item .btnFavorites,
     .news-th-list .item .btnFavorites {
@@ -818,7 +817,9 @@ body {
         -ms-flex-align: center;
             align-items: center;
         -ms-flex-direction: row;
-            flex-direction: row; }
+            flex-direction: row;
+        border-radius: 5px;
+        overflow: hidden; }
         .news-th .item .it_pic .imageCover:after,
         .news-th-list .item .it_pic .imageCover:after {
           content: '';
@@ -887,12 +888,12 @@ body {
       .news-th .item .it_content .title a,
       .news-th-list .item .it_content .title,
       .news-th-list .item .it_content .title a {
-        font-size: 20px;
+        font-size: 18px;
         font-weight: 700;
-        line-height: 20px;
-        max-height: 42px;
-        color: #000;
-        margin: 0 0 5px;
+        line-height: 26px;
+        max-height: 105px;
+        color: #232323;
+        margin: 0 0 7px;
         overflow: hidden;
         display: block;
         transition: color 0.3s ease; }
@@ -957,7 +958,7 @@ body {
     padding-bottom: 30px;
     display: table; }
   .news-th-list .item .it_pic .imageCover {
-    width: 380px; }
+    width: 300px; }
   .news-th-list .item .it_content {
     position: relative;
     width: 100%;
@@ -969,10 +970,10 @@ body {
       font-weight: 600;
       color: #000; }
     .news-th-list .item .it_content .description {
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 400;
-      line-height: 21px;
-      color: #555;
+      line-height: 23px;
+      color: #282828;
       margin: 0 0 15px; }
 
 .row.news .container:before, .row.news .container:after {
@@ -2085,7 +2086,10 @@ body {
   border: none;
   outline: none;
   z-index: 9;
-  transition: width .2s ease; }
+  opacity: 0.8;
+  -moz-opacity: 0.8;
+  filter: alpha(opacity=0.8);
+  transition: opacity .3s ease; }
   .slick-prev:after,
   .slick-next:after {
     position: relative;
@@ -2105,21 +2109,22 @@ body {
     .slick-next svg path {
       fill: rgba(255, 255, 255, 0.5);
       transition: all 0.3s ease; }
-  .slick-prev:hover, .slick-prev:focus,
-  .slick-next:hover,
-  .slick-next:focus {
-    width: 50px; }
-    .slick-prev:hover:after, .slick-prev:focus:after,
-    .slick-next:hover:after,
-    .slick-next:focus:after {
+  .slick-prev:hover,
+  .slick-next:hover {
+    opacity: 1;
+    -moz-opacity: 1;
+    filter: alpha(opacity=1); }
+    .slick-prev:hover:after,
+    .slick-next:hover:after {
       color: white; }
-    .slick-prev:hover svg path, .slick-prev:focus svg path,
-    .slick-next:hover svg path,
-    .slick-next:focus svg path {
+    .slick-prev:hover svg path,
+    .slick-next:hover svg path {
       fill: white; }
-  .slick-prev.slick-disabled svg path,
-  .slick-next.slick-disabled svg path {
-    fill: rgba(255, 255, 255, 0); }
+  .slick-prev.slick-disabled,
+  .slick-next.slick-disabled {
+    opacity: 0;
+    -moz-opacity: 0;
+    filter: alpha(opacity=0); }
 
 .slick-prev {
   left: 20px; }
@@ -3375,9 +3380,10 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
       color: #00b551; }
   .cf_detail .dt_content {
     position: relative;
-    max-width: 860px;
-    padding: 0 20px 0 0;
-    display: table-cell;
+    max-width: 840px;
+    width: 100%;
+    padding: 0 30px 0 0;
+    display: inline-block;
     vertical-align: top; }
     .cf_detail .dt_content .titleBlock .workingHours {
       position: relative;
@@ -3411,9 +3417,9 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
         display: block; }
       .cf_detail .dt_content .dt_viewBlock .title {
         position: relative;
-        font-size: 28px;
+        font-size: 27px;
         font-weight: 400;
-        line-height: 28px;
+        line-height: 35px;
         color: #333333;
         margin: 0 0 30px;
         padding-right: 160px;
@@ -3439,7 +3445,7 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
         background-color: #383b45;
         display: block;
         margin: 0 auto 30px;
-        padding: 15px 40px;
+        padding: 10px 5px;
         overflow: hidden;
         position: relative;
         width: calc(100% + 60px);
@@ -3450,6 +3456,7 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
           position: relative;
           width: 100%;
           height: 100%;
+          border-radius: 2px;
           background-size: cover;
           background-position: center;
           background-repeat: no-repeat;
@@ -3462,7 +3469,6 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
           .cf_detail .dt_content .dt_viewBlock .detailCarousel .item:before {
             content: '';
             padding-top: 100%;
-            float: left;
             background-color: rgba(0, 0, 0, 0.2);
             display: block; }
           .cf_detail .dt_content .dt_viewBlock .detailCarousel .item .image {
@@ -3589,8 +3595,9 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
           display: none !important; }
   .cf_detail .dt_rightSide {
     position: relative;
-    max-width: 330px;
-    display: table-cell;
+    max-width: 340px;
+    width: 100%;
+    display: inline-block;
     vertical-align: top; }
 
 .cf_filterPage .mapInner {
@@ -3669,7 +3676,11 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
       width: 100%;
       display: table; }
       .cf_filterPage .fp_container .navbar .formFilter .buttons .btn {
+        font-family: 'Roboto', sans-serif;
         width: 50%;
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 40px;
         padding: 0 10px;
         display: inline-block;
         vertical-align: middle; }
@@ -3921,6 +3932,7 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
   .widget_location .wl_map {
     padding: 0; }
     .widget_location .wl_map .ya-taxi-widget {
+      width: 100% !important;
       height: 280px !important; }
       .widget_location .wl_map .ya-taxi-widget .ya-taxi-widget__content {
         border: none !important; }
@@ -3936,7 +3948,7 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
   .widget_recommended .list_face {
     position: relative;
     margin: 0 0 30px;
-    padding: 20px; }
+    padding: 15px; }
     .widget_recommended .list_face li {
       position: relative;
       margin: 0 0 20px; }
@@ -3946,40 +3958,49 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
         position: absolute;
         top: 0;
         left: 0;
+        width: 90px;
+        height: 90px;
         margin: auto;
-        display: block; }
+        display: block;
+        border-radius: 4px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover; }
         .widget_recommended .list_face li .images img {
-          width: 70px;
-          height: 70px;
-          border-radius: 3px; }
+          position: relative;
+          width: 100%;
+          z-index: -1; }
       .widget_recommended .list_face li .infoBlock {
         position: relative;
-        min-height: 80px;
-        margin: 0 0 0 85px;
+        min-height: 90px;
+        margin: 0 0 0 105px;
         padding: 0; }
         .widget_recommended .list_face li .infoBlock .title {
-          font-size: 15px;
+          font-size: 14px;
           font-weight: 700;
+          line-height: 20px;
           color: #414141;
           margin: 0 0 5px;
+          padding: 0;
           display: block;
           text-decoration: none;
           transition: color 0.3s ease; }
           .widget_recommended .list_face li .infoBlock .title:hover {
             color: #00b551; }
         .widget_recommended .list_face li .infoBlock .rating {
-          position: absolute;
-          top: 0;
-          right: 0;
+          position: relative;
           font-size: 13px;
           font-weight: bold;
+          line-height: 26px;
           width: 26px;
           height: 26px;
-          line-height: 26px;
           border-radius: 4px;
           color: #ffffff;
           text-align: center;
-          display: inline-block; }
+          float: right;
+          margin: 0 0 7px 7px;
+          display: inline-block;
+          vertical-align: top; }
           .widget_recommended .list_face li .infoBlock .rating.low {
             background-color: #ff9600; }
           .widget_recommended .list_face li .infoBlock .rating.medium {
