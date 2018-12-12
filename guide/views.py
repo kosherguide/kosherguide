@@ -5,7 +5,7 @@ from django.views import generic
 from django.utils import timezone
 from django.http import HttpResponse
 from django.views.generic import TemplateView
-from .models import Slider, Post, Category, Synagogue, Restaurant, Kitchen, Photo, Phone, Email, Country, City, PhotoSynagogue, PhoneSynagogue, EmailSynagogue
+from .models import Slider, Post, Category, Synagogue, Restaurant, Kitchen, Photo, Phone, Email, WorkingHours, Country, City, PhotoSynagogue, PhoneSynagogue, EmailSynagogue, WorkingHoursSynagogue
 
 from django.core import serializers
 import json as simplejson
@@ -71,6 +71,7 @@ def category_synagogues_detail(request, handle):
     gallery = PhotoSynagogue.objects.filter(synagogue=synagogue.id)
     phones = PhoneSynagogue.objects.filter(synagogue=synagogue.id)
     emails = EmailSynagogue.objects.filter(synagogue=synagogue.id)
+    workingHours = WorkingHoursSynagogue.objects.filter(synagogue=synagogue.id)
 
     if synagogue.lat is None or synagogue.lng is None:
         jsonCoordinates = ''
@@ -84,6 +85,7 @@ def category_synagogues_detail(request, handle):
     data['gallery'] = gallery
     data['phones'] = phones
     data['emails'] = emails
+    data['workingHours'] = workingHours
     data['jsonCoordinates'] = jsonCoordinates
     data['dbSynagoguesSame'] = dbSynagoguesSame
 
@@ -148,6 +150,7 @@ def category_restaurants_detail(request, handle):
     gallery = Photo.objects.filter(restaurant=restaurant.id)
     phones = Phone.objects.filter(restaurant=restaurant.id)
     emails = Email.objects.filter(restaurant=restaurant.id)
+    workingHours = WorkingHours.objects.filter(restaurant=restaurant.id)
     kitchens = restaurant.kitchens.all()
 
     if restaurant.lat is None or restaurant.lng is None:
@@ -163,6 +166,7 @@ def category_restaurants_detail(request, handle):
     data['kitchens'] = kitchens
     data['phones'] = phones
     data['emails'] = emails
+    data['workingHours'] = workingHours
     data['jsonCoordinates'] = jsonCoordinates
     data['dbRestaurantsSame'] = dbRestaurantsSame
 

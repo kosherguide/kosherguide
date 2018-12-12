@@ -44,7 +44,7 @@
 
                     {% if synagogue.text != '' %}
                         <div class="titleBlock">Описание
-                            <div class="workingHours">Открыто до 00:00</div>
+                           {# <div class="workingHours">Открыто до 00:00</div> #}
                         </div>
                         <div class="description">
                             <p>{{synagogue.text}}</p>
@@ -71,10 +71,14 @@
                                 <div class="info">{% for phone in phones %}{{ phone.title }}{% if forloop.last == False %}, {% endif %}{% endfor %}</div>
                             </li>
                         {% endif %}
-                        {% if synagogue.working_hours %}
+                        {% if workingHours|length > 0 %}
                             <li>
-                                <div class="name">Часы работы</div>
-                                <div class="info">{{ synagogue.working_hours }}</div>
+                                <div class="name">Время работы</div>
+                                <div class="info">
+                                    <ul class="time">
+                                        {% for workingHour in workingHours %}<li>{{ workingHour.title }}</li>{% endfor %}
+                                    </ul>
+                                </div>
                             </li>
                         {% endif %}
                         <li>
@@ -134,16 +138,15 @@
                             {% for synagogue in dbSynagoguesSame %}
                                <li>
                                   {% if synagogue.pic.url %}
-                                        <a href="{% url 'guide:synagogue' synagogue.handle %}" class="images">
+                                        <a href="{% url 'guide:synagogue' synagogue.handle %}" class="images" style="background-image: url({{ synagogue.pic.url }})">
                                             <img src="{{ synagogue.pic.url }}">
                                         </a>
                                    {% endif %}
                                    <div class="infoBlock">
-                                       <a href="{% url 'guide:synagogue' synagogue.handle %}" class="title">{{synagogue.title}}</a>
                                        {% if synagogue.rating %}
                                             <div class="rating high">{{synagogue.rating}}</div>
                                        {% endif %}
-                                       <a href="/category/synagogues/" class="place">Синагога</a>
+                                       <a href="{% url 'guide:synagogue' synagogue.handle %}" class="title">{{synagogue.title}}</a>
                                        {% if synagogue.preview_text %}
                                             <a href="#" class="location">{{synagogue.preview_text}}</a>
                                        {% endif %}

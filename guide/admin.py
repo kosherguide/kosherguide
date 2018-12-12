@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Post, Category, Slider, Synagogue, Kitchen, Photo, Phone, Email, Country, City, Restaurant, \
-    PhotoSynagogue, PhoneSynagogue, EmailSynagogue
+from .models import Post, Category, Slider, Synagogue, Kitchen, Photo, Phone, Email, WorkingHours, Country, City, Restaurant, \
+    PhotoSynagogue, PhoneSynagogue, EmailSynagogue, WorkingHoursSynagogue
 
 admin.site.register(Post)
 admin.site.register(Category)
@@ -39,6 +39,13 @@ class PhoneInline(admin.StackedInline):
     verbose_name_plural = "Номера телефонов"
 
 
+class WorkingHoursInline(admin.StackedInline):
+    model = WorkingHours
+    extra = 1
+    verbose_name = "График работы"
+    verbose_name_plural = "График работы"
+
+
 class EmailInline(admin.StackedInline):
     model = Email
     extra = 1
@@ -47,7 +54,7 @@ class EmailInline(admin.StackedInline):
 
 
 class RestaurantAdmin(admin.ModelAdmin):
-    inlines = [PhotoInline, PhoneInline, EmailInline]
+    inlines = [PhotoInline, PhoneInline, EmailInline, WorkingHoursInline]
 
     def save_model(self, request, obj, form, change):
         obj.save()
@@ -70,6 +77,13 @@ class PhoneSynagogueInline(admin.StackedInline):
     verbose_name_plural = "Номера телефонов"
 
 
+class WorkingHoursSynagogueInline(admin.StackedInline):
+    model = WorkingHoursSynagogue
+    extra = 1
+    verbose_name = "График работы"
+    verbose_name_plural = "График работы"
+
+
 class EmailSynagogueInline(admin.StackedInline):
     model = EmailSynagogue
     extra = 1
@@ -78,7 +92,7 @@ class EmailSynagogueInline(admin.StackedInline):
 
 
 class SynagogueAdmin(admin.ModelAdmin):
-    inlines = [PhotoSynagogueInline, PhoneSynagogueInline, EmailSynagogueInline]
+    inlines = [PhotoSynagogueInline, PhoneSynagogueInline, EmailSynagogueInline, WorkingHoursSynagogueInline]
 
     def save_model(self, request, obj, form, change):
         obj.save()

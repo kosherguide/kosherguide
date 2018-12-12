@@ -92,7 +92,6 @@ class Synagogue(models.Model):
     subway = models.CharField(verbose_name="Метро", max_length=200, blank=True, null=True)
     created_date = models.DateTimeField(verbose_name="Дата создания", default=timezone.now)
     published_date = models.DateTimeField(verbose_name="Дата публикации", blank=True, null=True)
-    working_hours = models.CharField(verbose_name="График работы", max_length=200, blank=True, null=True)
     lat = models.CharField(verbose_name="Широта", max_length=200, blank=True, null=True)
     lng = models.CharField(verbose_name="Долгота", max_length=200, blank=True, null=True)
     site = models.CharField(verbose_name="Официальный сайт", max_length=700, blank=True, null=True)
@@ -124,6 +123,11 @@ class EmailSynagogue(models.Model):
     title = models.CharField(verbose_name="Почта", max_length=200, blank=True, null=True)
 
 
+class WorkingHoursSynagogue(models.Model):
+    synagogue = models.ForeignKey('guide.Synagogue', on_delete=models.CASCADE)
+    title = models.CharField(verbose_name="График работы", max_length=200, blank=True, null=True)
+
+
 class Restaurant(models.Model):
     title = models.CharField(verbose_name="Заголовок", max_length=200)
     pic = models.ImageField(verbose_name="Изображение", upload_to='images/', default='images/None/no-img.jpg', blank=True, null=True)
@@ -136,7 +140,6 @@ class Restaurant(models.Model):
     subway = models.CharField(verbose_name="Метро", max_length=200, blank=True, null=True)
     created_date = models.DateTimeField(verbose_name="Дата создания", default=timezone.now)
     published_date = models.DateTimeField(verbose_name="Дата публикации", blank=True, null=True)
-    working_hours = models.CharField(verbose_name="График работы", max_length=200, blank=True, null=True)
     kitchens = models.ManyToManyField(Kitchen, verbose_name="Кухни")
     average_account_min = models.CharField(verbose_name="Средний счет (минимальный)", max_length=200, blank=True, null=True)
     average_account_max = models.CharField(verbose_name="Средний счет (максимальный)", max_length=200, blank=True, null=True)
@@ -172,3 +175,8 @@ class Phone(models.Model):
 class Email(models.Model):
     restaurant = models.ForeignKey('guide.Restaurant', on_delete=models.CASCADE)
     title = models.CharField(verbose_name="Почта", max_length=200, blank=True, null=True)
+
+
+class WorkingHours(models.Model):
+    restaurant = models.ForeignKey('guide.Restaurant', on_delete=models.CASCADE)
+    title = models.CharField(verbose_name="График работы", max_length=200, blank=True, null=True)

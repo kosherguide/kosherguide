@@ -100,10 +100,14 @@
                                 <div class="info">{% for phone in phones %}{{ phone.title }}{% if forloop.last == False %}, {% endif %}{% endfor %}</div>
                             </li>
                         {% endif %}
-                        {% if restaurant.working_hours %}
+                        {% if workingHours|length > 0 %}
                             <li>
-                                <div class="name">Часы работы</div>
-                                <div class="info">{{ restaurant.working_hours }}</div>
+                                <div class="name">Время работы</div>
+                                <div class="info">
+                                    <ul class="time">
+                                        {% for workingHour in workingHours %}<li>{{ workingHour.title }}</li>{% endfor %}
+                                    </ul>
+                                </div>
                             </li>
                         {% endif %}
                         <li>
@@ -191,16 +195,15 @@
                             {% for restaurant in dbRestaurantsSame %}
                                <li>
                                    {% if restaurant.pic.url %}
-                                        <a href="{% url 'guide:restaurant' restaurant.handle %}" class="images">
+                                        <a href="{% url 'guide:restaurant' restaurant.handle %}" class="images" style="background-image: url({{ restaurant.pic.url }})">
                                             <img src="{{ restaurant.pic.url }}">
                                         </a>
                                    {% endif %}
                                    <div class="infoBlock">
-                                       <a href="{% url 'guide:restaurant' restaurant.handle %}" class="title">{{restaurant.title}}</a>
-                                       {% if restaurant.rating %}
+                                        {% if restaurant.rating %}
                                             <div class="rating high">{{restaurant.rating}}</div>
-                                       {% endif %}
-                                       <a href="/category/restaurants/" class="place">Кошерный ресторан</a>
+                                        {% endif %}
+                                       <a href="{% url 'guide:restaurant' restaurant.handle %}" class="title">{{restaurant.title}}</a>
                                        {% if restaurant.preview_text %}
                                             <a href="#" class="location">{{restaurant.preview_text}}</a>
                                        {% endif %}
