@@ -3580,9 +3580,10 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
         line-height: 22px;
         color: #444444;
         display: inline-block; }
-        .cf_detail .dt_content .dt_infoBlock .listInfo > li .info .time li {
+        .cf_detail .dt_content .dt_infoBlock .listInfo > li .info li {
+          line-height: 26px;
           display: block; }
-        .cf_detail .dt_content .dt_infoBlock .listInfo > li .info .time .red {
+        .cf_detail .dt_content .dt_infoBlock .listInfo > li .info .red {
           color: #d40000; }
     .cf_detail .dt_content .dt_reviewBlock {
       padding: 20px 30px; }

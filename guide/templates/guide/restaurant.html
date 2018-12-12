@@ -42,29 +42,6 @@
                         </div>
                    {% endif %}
 
-{#                   <div class="contacts">#}
-{#                       {% if phones|length > 0 %}#}
-{#                           <div class="cell number">#}
-{#                               <span class="icon icon-phone"></span>#}
-{#                               <span class="info">#}
-{#                                   {% for phone in phones %}{{ phone.title }}{% if forloop.last == False %}, {% endif %}{% endfor %}#}
-{#                               </span>#}
-{#                           </div>#}
-{#                       {% endif %}#}
-{#                       {% if restaurant.address %}#}
-{#                           <div class="cell location">#}
-{#                               <span class="icon icon-location"></span>#}
-{#                               <span class="info">{{ restaurant.address }}</span>#}
-{#                           </div>#}
-{#                       {% endif %}#}
-{#                       {% if restaurant.site %}#}
-{#                           <div class="cell site">#}
-{#                               <span class="icon icon-site"></span>#}
-{#                               <a href="{{ restaurant.site }}" target="_blank" class="info">{{ restaurant.site }}</a>#}
-{#                           </div>#}
-{#                       {% endif %}#}
-{#                   </div>#}
-
                     {% if restaurant.text != '' %}
                         <div class="titleBlock">Описание
 {#                            <div class="workingHours">Открыто до 00:00</div>#}
@@ -97,31 +74,25 @@
                         {% if phones|length > 0 %}
                             <li>
                                 <div class="name">Телефон</div>
-                                <div class="info">
-                                    <ul class="time">
-                                        {% for phone in phones %}<li>{{ phone.title }}</li>{% endfor %}
-                                    </ul>
-                                </div>
+                                 <ul class="info">
+                                    {% for phone in phones %}<li>{{ phone.title }}</li>{% endfor %}
+                                </ul>
                             </li>
                         {% endif %}
                         {% if emails|length > 0 %}
                             <li>
                                 <div class="name">Почта</div>
-                                <div class="info">
-                                    <ul class="time">
-                                        {% for email in emails %}<li>{{ email.title }}</li>{% endfor %}
-                                    </ul>
-                                </div>
+                                <ul class="info">
+                                    {% for email in emails %}<li>{{ email.title }}</li>{% endfor %}
+                                </ul>
                             </li>
                         {% endif %}
                         {% if workingHours|length > 0 %}
                             <li>
                                 <div class="name">Время работы</div>
-                                <div class="info">
-                                    <ul class="time">
-                                        {% for workingHour in workingHours %}<li>{{ workingHour.title }}</li>{% endfor %}
-                                    </ul>
-                                </div>
+                                <ul class="info">
+                                    {% for workingHour in workingHours %}<li>{{ workingHour.title }}</li>{% endfor %}
+                                </ul>
                             </li>
                         {% endif %}
                         <li>

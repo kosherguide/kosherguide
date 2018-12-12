@@ -14,9 +14,9 @@
                 <div class="dt_viewBlock Block wh_bl">
                    <div class="category">Синагога</div>
                    <h2 class="title"> {{synagogue.title}}
-                        {% if restaurant.rating %}
-                           <div class="ratingScore" data-score="{{restaurant.rating}}">
-                               <div class="count">{{restaurant.rating}}</div>
+                        {% if synagogue.rating %}
+                           <div class="ratingScore" data-score="{{synagogue.rating}}">
+                               <div class="count">{{synagogue.rating}}</div>
                                <div class="score">
                                    <span></span>
                                    <span></span>
@@ -68,31 +68,25 @@
                         {% if phones|length > 0 %}
                             <li>
                                 <div class="name">Телефон</div>
-                                <div class="info">
-                                    <ul class="time">
-                                        {% for phone in phones %}<li>{{ phone.title }}</li>{% endfor %}
-                                    </ul>
-                                </div>
+                                 <ul class="info">
+                                    {% for phone in phones %}<li>{{ phone.title }}</li>{% endfor %}
+                                </ul>
                             </li>
                         {% endif %}
                         {% if emails|length > 0 %}
                             <li>
                                 <div class="name">Почта</div>
-                                <div class="info">
-                                    <ul class="time">
-                                        {% for email in emails %}<li>{{ email.title }}</li>{% endfor %}
-                                    </ul>
-                                </div>
+                                <ul class="info">
+                                    {% for email in emails %}<li>{{ email.title }}</li>{% endfor %}
+                                </ul>
                             </li>
                         {% endif %}
                         {% if workingHours|length > 0 %}
                             <li>
                                 <div class="name">Время работы</div>
-                                <div class="info">
-                                    <ul class="time">
-                                        {% for workingHour in workingHours %}<li>{{ workingHour.title }}</li>{% endfor %}
-                                    </ul>
-                                </div>
+                                <ul class="info">
+                                    {% for workingHour in workingHours %}<li>{{ workingHour.title }}</li>{% endfor %}
+                                </ul>
                             </li>
                         {% endif %}
                         <li>
@@ -104,7 +98,7 @@
                         <li>
                             <div class="name">Wi-Fi</div>
                             <div class="info">
-                                {% if restaurant.wifi %} есть {% else %} нет {% endif %}
+                                {% if synagogue.wifi %} есть {% else %} нет {% endif %}
                             </div>
                         </li>
                         <li>
