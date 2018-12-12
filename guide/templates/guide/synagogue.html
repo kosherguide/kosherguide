@@ -68,7 +68,21 @@
                         {% if phones|length > 0 %}
                             <li>
                                 <div class="name">Телефон</div>
-                                <div class="info">{% for phone in phones %}{{ phone.title }}{% if forloop.last == False %}, {% endif %}{% endfor %}</div>
+                                <div class="info">
+                                    <ul class="time">
+                                        {% for phone in phones %}<li>{{ phone.title }}</li>{% endfor %}
+                                    </ul>
+                                </div>
+                            </li>
+                        {% endif %}
+                        {% if emails|length > 0 %}
+                            <li>
+                                <div class="name">Почта</div>
+                                <div class="info">
+                                    <ul class="time">
+                                        {% for email in emails %}<li>{{ email.title }}</li>{% endfor %}
+                                    </ul>
+                                </div>
                             </li>
                         {% endif %}
                         {% if workingHours|length > 0 %}
