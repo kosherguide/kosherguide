@@ -3545,6 +3545,8 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
         padding: 10px 0;
         display: block; }
         .cf_detail .dt_content .dt_viewBlock .description p {
+          white-space: pre-line;
+          text-align: justify;
           margin-bottom: 20px; }
       .cf_detail .dt_content .dt_viewBlock .kitchens {
         border-bottom: 1px solid #ebebeb;

@@ -137,6 +137,12 @@
                                  {% if restaurant.delivery %} есть {% else %} нет {% endif %}
                             </div>
                         </li>
+                        {% if restaurant.site %}
+                            <li>
+                                <div class="name">Сайт</div>
+                                <div class="info"><a href="{{ restaurant.site }}" target="_blank">{{ restaurant.site }}</a></div>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
 

@@ -107,6 +107,12 @@
                                 {% if synagogue.is_restaurant %} есть {% else %} нет {% endif %}
                             </div>
                         </li>
+                        {% if synagogue.site %}
+                            <li>
+                                <div class="name">Сайт</div>
+                                <div class="info"><a href="{{ synagogue.site }}" target="_blank">{{ synagogue.site }}</a></div>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
 
