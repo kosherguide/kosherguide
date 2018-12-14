@@ -3587,6 +3587,13 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
           display: block; }
         .cf_detail .dt_content .dt_infoBlock .listInfo > li .info .red {
           color: #d40000; }
+        .cf_detail .dt_content .dt_infoBlock .listInfo > li .info .link {
+          color: #000000;
+          border-bottom: 1px solid transparent;
+          transition: all 0.3s ease; }
+          .cf_detail .dt_content .dt_infoBlock .listInfo > li .info .link:hover {
+            color: #000;
+            border-color: #000; }
     .cf_detail .dt_content .dt_reviewBlock {
       padding: 20px 30px; }
     .cf_detail .dt_content .dt_mapBlock .wrapper {
